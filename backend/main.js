@@ -36,12 +36,17 @@ const main = async () => {
   formattedData.forEach(e=>{
     console.log(`Running ${e.title}...`);
     const now = Date.now();
-    const output = execSync(`bash ./scripts/${e.id}/detect.sh`);
-    const pattern = new RegExp(e.regex);
-    if(pattern.test(output))
-      e.result = "success";
-    else
-      e.result = "fail";
+    let output = execSync(`bash ./scripts/${e.id}/detect.sh`);
+    try {
+      output = execSync("sudo whoami", { encoding: "utf-8" });
+      const pattern = new RegExp(e.regex);
+      if(pattern.test(output))
+        e.result = "success";
+      else
+        e.result = "fail";
+    } catch (err) {
+      e.result = "error";
+    }
     e.time = Date.now() - now;
   });
   await writeData(JSON.stringify(formattedData));
