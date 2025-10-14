@@ -1,0 +1,16 @@
+[
+  {
+    "id":0,
+    "title":"1.1 Ensure All Apple-provided Software Is Current (Automated)",
+    "result":"success",
+    "time":245,
+    "description":"Software vendors release security patches and software updates for their products\nwhen security vulnerabilities are discovered. There is no simple way to complete this\naction without a network connection to an Apple software repository. Please ensure\nappropriate access for this control. This check is only for what Apple provides through\nsoftware update.\nSoftware updates should be run at minimum every 30 days. Run the following command\nto verify when software update was previously run:\n$ /usr/bin/sudo defaults read\n/Library/Preferences/com.apple.SoftwareUpdate | grep -e\nLastFullSuccessfulDate.\nThe response should be in the last 30 days (Example): LastFullSuccessfulDate =\n\"2020-07-30 12:45:25 +0000\";"
+  },
+  {
+    "id":1,
+    "title":"1.2 Ensure Auto Update Is Enabled (Automated)",
+    "result":"fail",
+    "time":100,
+    "description":"Auto Update verifies that your system has the newest security patches and software\nupdates. If \"Automatically check for updates\" is not selected, background updates for\nnew malware definition files from Apple for XProtect and Gatekeeper will not occur.\nhttp://macops.ca/os-x-admins-your-clients-are-not-getting-background-security-updates/\nhttps://derflounder.wordpress.com/2014/12/17/forcing-xprotect-blacklist-updates-on-\nmavericks-and-yosemite/"
+  }
+]
