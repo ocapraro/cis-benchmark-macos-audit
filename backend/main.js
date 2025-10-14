@@ -35,12 +35,14 @@ const main = async () => {
   const formattedData = JSON.parse(data);
   formattedData.forEach(e=>{
     console.log(`Running ${e.title}...`);
+    const now = Date.now();
     const output = execSync(`bash ./scripts/${e.id}/detect.sh`);
     const pattern = new RegExp(e.regex);
     if(pattern.test(output))
       e.result = "success";
     else
       e.result = "fail";
+    e.time = Date.now() - now;
   });
   await writeData(JSON.stringify(formattedData));
   server.listen(PORT, () => {
