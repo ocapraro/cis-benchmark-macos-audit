@@ -1,33 +1,51 @@
 const http = require('http');
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
+const { execSync } = require("child_process");
 
 const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
+const readData = async () => {
+  const resultsPath = path.join(__dirname, 'data', 'tests.json');
+  const file_data = await fs.readFile(resultsPath, 'utf8');
+  return file_data;
+}
+
+const writeData = async (data) => {
+  const resultsPath = path.join(__dirname, 'data', 'tests.json');
+  await fs.writeFile(resultsPath, data, 'utf8');
+}
+
+const server = http.createServer(async (req, res) => {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight request
-  if (req.method === 'OPTIONS') {
-    res.writeHead(204);
-    res.end();
-    return;
+  if (req.url === '/' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    const data = await readData();
+    res.end(data);
   }
-
-  res.writeHead(200, { 'Content-Type': 'application/json' });
-  const resultsPath = path.join(__dirname, 'data', 'results.json');
-  fs.readFile(resultsPath, 'utf8', (err, data) => {
-    if (err) {
-      res.end(JSON.stringify({ error: 'Could not read results.json' }));
-    } else {
-      res.end(data);
-    }
-  });
 });
 
-server.listen(PORT, () => {
+
+const main = async () => {
+  const data = await readData();
+  const formattedData = JSON.parse(data);
+  formattedData.forEach(e=>{
+    console.log(`Running ${e.title}...`);
+    const output = execSync(`bash ./scripts/${e.id}/detect.sh`);
+    const pattern = new RegExp(e.regex);
+    if(pattern.test(output))
+      e.result = "success";
+    else
+      e.result = "fail";
+  });
+  await writeData(JSON.stringify(formattedData));
+  server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+}
+
+main();
