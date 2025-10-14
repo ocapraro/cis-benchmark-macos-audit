@@ -38,7 +38,7 @@ const main = async () => {
     const now = Date.now();
     try {
       const output = execSync(`bash ./scripts/${e.id}/detect.sh`, { encoding: "utf-8" });
-      const pattern = new RegExp(e.regex);
+      const pattern = new RegExp(e.regex,"m");
       if(pattern.test(output))
         e.result = "success";
       else

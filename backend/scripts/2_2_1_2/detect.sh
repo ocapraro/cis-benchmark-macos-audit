@@ -1,0 +1,1 @@
+/usr/bin/sudo /bin/launchctl list | /usr/bin/grep -c com.apple.timed

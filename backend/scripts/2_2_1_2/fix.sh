@@ -1,0 +1,1 @@
+/usr/bin/sudo /bin/launchctl load -w /System/Library/LaunchDaemons/com.apple.timed.plist
