@@ -1,1 +1,58 @@
-[{"id":"1_1","title":"1.1 Ensure All Apple-provided Software Is Current (Automated)","result":"fail","time":6439,"description":"Software vendors release security patches and software updates for their products\nwhen security vulnerabilities are discovered. There is no simple way to complete this\naction without a network connection to an Apple software repository. Please ensure\nappropriate access for this control. This check is only for what Apple provides through\nsoftware update.\nSoftware updates should be run at minimum every 30 days. Run the following command\nto verify when software update was previously run:\n$ /usr/bin/sudo defaults read\n/Library/Preferences/com.apple.SoftwareUpdate | grep -e\nLastFullSuccessfulDate.\nThe response should be in the last 30 days (Example): LastFullSuccessfulDate =\n\"2020-07-30 12:45:25 +0000\";","regex":"No new software available"},{"id":"1_2","title":"1.2 Ensure Auto Update Is Enabled (Automated)","result":"fail","time":31,"description":"Auto Update verifies that your system has the newest security patches and software\nupdates. If \"Automatically check for updates\" is not selected, background updates for\nnew malware definition files from Apple for XProtect and Gatekeeper will not occur.\nhttp://macops.ca/os-x-admins-your-clients-are-not-getting-background-security-updates/\nhttps://derflounder.wordpress.com/2014/12/17/forcing-xprotect-blacklist-updates-on-\nmavericks-and-yosemite/","regex":"true"},{"id":"1_3","title":"1.3 Ensure Download New Updates When Available Is Enabled (Automated)","result":"success","time":30,"description":"In the GUI, both \"Install macOS updates\" and \"Install app updates from the App Store\" are dependent on whether \"Download new updates when available\" is selected.","regex":"true"}]
+[
+  {
+    "description": "Software vendors release security patches and software updates for their products\nwhen security vulnerabilities are discovered. There is no simple way to complete this\naction without a network connection to an Apple software repository. Please ensure\nappropriate access for this control. This check is only for what Apple provides through\nsoftware update.\nSoftware updates should be run at minimum every 30 days. Run the following command\nto verify when software update was previously run:\n$ /usr/bin/sudo defaults read\n/Library/Preferences/com.apple.SoftwareUpdate | grep -e\nLastFullSuccessfulDate.\nThe response should be in the last 30 days (Example): LastFullSuccessfulDate =\n\"2020-07-30 12:45:25 +0000\";",
+    "id": "1_1",
+    "regex": "No new software available",
+    "result": "fail",
+    "time": 6439,
+    "title": "1.1 Ensure All Apple-provided Software Is Current (Automated)"
+  },
+  {
+    "description": "Auto Update verifies that your system has the newest security patches and software\nupdates. If \"Automatically check for updates\" is not selected, background updates for\nnew malware definition files from Apple for XProtect and Gatekeeper will not occur.\nhttp://macops.ca/os-x-admins-your-clients-are-not-getting-background-security-updates/\nhttps://derflounder.wordpress.com/2014/12/17/forcing-xprotect-blacklist-updates-on-\nmavericks-and-yosemite/",
+    "id": "1_2",
+    "regex": "true",
+    "result": "fail",
+    "time": 31,
+    "title": "1.2 Ensure Auto Update Is Enabled (Automated)"
+  },
+  {
+    "description": "In the GUI, both \"Install macOS updates\" and \"Install app updates from the App Store\" are dependent on whether \"Download new updates when available\" is selected.",
+    "id": "1_3",
+    "regex": "true",
+    "result": "success",
+    "time": 30,
+    "title": "1.3 Ensure Download New Updates When Available Is Enabled (Automated)"
+  },
+  {
+    "description": "Ensure that macOS updates are installed after they are available from Apple. This setting enables macOS updates to be automatically installed. Some environments will want to approve and test updates before they are delivered. It is best practice to test first where updates can and have caused disruptions to operations. Automatic updates should be turned off where changes are tightly controlled and there are mature testing and approval processes. Automatic updates should not be turned off simply to allow the administrator to contact users in order to verify installation. A dependable, repeatable process involving a patch agent or remote management tool should be in place before auto-updates are turned off.",
+    "id": "1_4",
+    "regex": "true",
+    "result": "error",
+    "time": 0,
+    "title": "1.4 Ensure Install of macOS Updates Is Enabled (Automated)"
+  },
+  {
+    "description": "Ensure that application updates are installed after they are available from Apple. These updates do not require reboots or administrator privileges for end users.",
+    "id": "1_5",
+    "regex": "true",
+    "result": "error",
+    "time": 0,
+    "title": "1.5 Ensure Install Application Updates from the App Store Is Enabled (Automated)"
+  },
+  {
+    "description": "Ensure that system and security updates are installed after they are available from Apple. This setting enables definition updates for XProtect and Gatekeeper. With this setting in place, new malware and adware that Apple has added to the list of malware or untrusted software will not execute. These updates do not require reboots or end user admin rights. Apple has introduced a security feature that allows for smaller downloads and the installation of security updates when a reboot is not required. This feature is only available when the last regular update has already been applied. This feature emphasizes that a Mac must be up-to-date on patches so that Apple's security tools can be used to quickly patch when a rapid response is necessary.",
+    "id": "1_6",
+    "regex": "true",
+    "result": "error",
+    "time": 0,
+    "title": "1.6 Ensure Install Security Responses and System Files Is Enabled (Automated)"
+  },
+  {
+    "description": "A firewall is a piece of software that blocks unwanted incoming connections to a system.",
+    "id": "2_1_1",
+    "regex": "true",
+    "result": "error",
+    "time": 0,
+    "title": "2.1.1 Ensure Firewall Is Enabled (Automated)"
+  }
+]

@@ -1,0 +1,7 @@
+/usr/bin/sudo /usr/bin/defaults write
+/Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool true
+
+
+/usr/bin/sudo /usr/bin/defaults write
+/Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool
+true
