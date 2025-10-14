@@ -36,9 +36,8 @@ const main = async () => {
   formattedData.forEach(e=>{
     console.log(`Running ${e.title}...`);
     const now = Date.now();
-    let output = execSync(`bash ./scripts/${e.id}/detect.sh`);
     try {
-      output = execSync("sudo whoami", { encoding: "utf-8" });
+      const output = execSync(`bash ./scripts/${e.id}/detect.sh`, { encoding: "utf-8" });
       const pattern = new RegExp(e.regex);
       if(pattern.test(output))
         e.result = "success";
