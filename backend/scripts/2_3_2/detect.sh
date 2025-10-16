@@ -1,0 +1,1 @@
+/usr/bin/sudo -u ocapraro /usr/bin/defaults read /Users/ocapraro/Library/Preferences/com.apple.AdLib.plist allowApplePersonalizedAdvertising
