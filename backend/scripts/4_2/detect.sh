@@ -1,1 +1,1 @@
-/usr/bin/sudo /bin/launchctl list | /usr/bin/grep -c "org.apache.httpd"
+/usr/bin/sudo /bin/launchctl list | /usr/bin/grep -c "org.apache.httpd" || true
