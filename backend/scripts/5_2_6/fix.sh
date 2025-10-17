@@ -1,1 +1,1 @@
-/usr/bin/sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "requiresMixedCase=1"
+sudo pwpolicy -n /Local/Default -setglobalpolicy "requiresMixedCase=1"

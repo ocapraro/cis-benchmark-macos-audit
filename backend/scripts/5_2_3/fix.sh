@@ -1,1 +1,1 @@
-/usr/bin/sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy -setaccountpolicies "requiresAlpha=1"
+sudo pwpolicy -n /Local/Default -setglobalpolicy "requiresAlpha=1"

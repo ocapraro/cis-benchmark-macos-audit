@@ -90,21 +90,21 @@ const server = http.createServer(async (req, res) => {
 const main = async () => {
   const data = await readData();
   const formattedData = JSON.parse(data);
-  // formattedData.forEach(e=>{
-  //   console.log(`Running ${e.title}...`);
-  //   const now = Date.now();
-  //   try {
-  //     const output = execSync(`bash ./scripts/${e.id}/detect.sh`, { encoding: "utf-8" });
-  //     const pattern = new RegExp(e.regex,"m");
-  //     if(pattern.test(output))
-  //       e.result = "success";
-  //     else
-  //       e.result = "fail";
-  //   } catch (err) {
-  //     e.result = "error";
-  //   }
-  //   e.time = Date.now() - now;
-  // });
+  formattedData.forEach(e=>{
+    console.log(`Running ${e.title}...`);
+    const now = Date.now();
+    try {
+      const output = execSync(`bash ./scripts/${e.id}/detect.sh`, { encoding: "utf-8" });
+      const pattern = new RegExp(e.regex,"m");
+      if(pattern.test(output))
+        e.result = "success";
+      else
+        e.result = "fail";
+    } catch (err) {
+      e.result = "error";
+    }
+    e.time = Date.now() - now;
+  });
   await writeData(JSON.stringify(formattedData));
   server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

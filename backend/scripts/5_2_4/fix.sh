@@ -1,1 +1,1 @@
-/usr/bin/sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy -setaccountpolicies "requiresNumeric=1"
+sudo pwpolicy -n /Local/Default -setglobalpolicy "requiresNumeric=1"

@@ -1,1 +1,1 @@
-/usr/bin/sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy -setaccountpolicies "requiresSymbol=1"
+sudo pwpolicy -n /Local/Default -setglobalpolicy "requiresSymbol=1"

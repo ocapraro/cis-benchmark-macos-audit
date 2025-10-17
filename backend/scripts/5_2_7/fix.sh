@@ -1,1 +1,1 @@
-/usr/bin/sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "maxMinutesUntilChangePassword=525600"
+sudo pwpolicy -n /Local/Default -setglobalpolicy "maxMinutesUntilChangePassword=525600"
