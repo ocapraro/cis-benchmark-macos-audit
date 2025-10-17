@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/sbin/nvram boot-args=""

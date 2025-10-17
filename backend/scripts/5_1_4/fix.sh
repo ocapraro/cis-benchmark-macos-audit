@@ -1,0 +1,1 @@
+/usr/bin/sudo IFS=$'\n' for apps in $( /usr/bin/find /System/Volumes/Data/Applications -iname "*\.app" -type d -perm -2 | grep -v Xcode.app ); do /bin/chmod -R o-w "$apps"

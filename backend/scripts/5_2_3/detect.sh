@@ -1,0 +1,1 @@
+pref=$(/usr/bin/sudo /usr/bin/pwpolicy -getaccountpolicies | /usr/bin/sudo /usr/bin/grep -A1 minimumLetters | /usr/bin/sudo /usr/bin/tail -1 | /usr/bin/sudo /usr/bin/cut -d'>' -f2 | /usr/bin/sudo /usr/bin/cut -d '<' -f1) && if [[ "$pref" != "" && pref -ge 1 ]]; then echo "true"; else echo "false"; fi

@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/bin/sudo -V | /usr/bin/grep -c "Type of authentication timestamp record: tty"

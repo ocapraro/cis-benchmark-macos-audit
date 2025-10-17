@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/bin/xprotect status

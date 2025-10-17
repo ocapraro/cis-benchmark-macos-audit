@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/bin/find /System/Volumes/Data/Users -mindepth 1 -maxdepth 1 -type d -not -perm 700 | /usr/bin/grep -v "Shared" | /usr/bin/grep -v "Guest"

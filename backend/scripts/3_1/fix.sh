@@ -1,0 +1,1 @@
+sudo launchctl kickstart -k system/com.apple.auditd

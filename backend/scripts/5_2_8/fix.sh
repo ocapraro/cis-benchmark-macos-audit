@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/bin/pwpolicy -n /Local/Default -setglobalpolicy "usingHistory=15"

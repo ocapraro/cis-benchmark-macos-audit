@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/bin/grep -i ttl /etc/asl/com.apple.install

@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/bin/security authorizationdb read system.login.screensaver 2>&1 | /usr/bin/grep -c 'authenticate-session-owner'

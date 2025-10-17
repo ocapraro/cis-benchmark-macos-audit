@@ -1,0 +1,1 @@
+/usr/bin/sudo /bin/chmod -R og-rwx /Users/ocapraro

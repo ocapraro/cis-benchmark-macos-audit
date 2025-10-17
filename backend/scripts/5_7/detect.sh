@@ -1,0 +1,1 @@
+/usr/bin/sudo /bin/cat /Library/Security/PolicyBanner.*

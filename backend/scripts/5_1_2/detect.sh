@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/sbin/nvram -p | /usr/bin/grep -c "amfi_get_out_of_my_way=1"

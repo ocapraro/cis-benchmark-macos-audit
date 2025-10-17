@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/bin/grep -e "^expire-after" /etc/security/audit_control

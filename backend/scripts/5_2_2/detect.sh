@@ -1,0 +1,1 @@
+/usr/bin/sudo /usr/bin/pwpolicy -getaccountpolicies | /usr/bin/grep -e "policyAttributePassword matches" | /usr/bin/grep -e "[0-9][0-9]" | /usr/bin/cut -b 46-53 | /usr/bin/cut -d',' -f1 | /usr/bin/cut -d'{' -f2
