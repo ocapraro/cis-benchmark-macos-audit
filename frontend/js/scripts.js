@@ -25,6 +25,19 @@ window.onload = ()=>{
             <div class="subtitle">${e.time}ms</div>
             <img src="./assets/chevron.svg" alt="chevron">
           </div>`;
+        row.addEventListener("click",_=>{
+          document.querySelectorAll("#expand").forEach(e=>e.remove());
+          if (row.classList.contains("expanded")) {
+            row.classList.remove("expanded");
+            return;
+          }
+          document.querySelectorAll(".expanded.row").forEach(e=>e.classList.remove("expanded"));
+          row.classList.add("expanded");
+          const expand = document.createElement("div");
+          expand.id = "expand";
+          expand.innerHTML = "test";
+          row.after(expand);
+        });
         document.getElementById("results").appendChild(row);
       });
       document.querySelector("#passed-tests .number").innerText = successes;
