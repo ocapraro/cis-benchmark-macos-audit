@@ -1,1 +1,1 @@
-/usr/bin/sudo /bin/ls /Users/ | /usr/bin/grep Guest
+/usr/bin/sudo /bin/ls /Users/ | /usr/bin/grep Guest || true
