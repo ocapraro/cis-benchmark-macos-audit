@@ -1,1 +1,1 @@
-/usr/bin/sudo /bin/cat /Library/Security/PolicyBanner.*
+/usr/bin/sudo /bin/cat /Library/Security/PolicyBanner.* || true
