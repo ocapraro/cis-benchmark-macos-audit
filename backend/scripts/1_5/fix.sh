@@ -1,2 +1,1 @@
-/usr/bin/sudo /usr/bin/defaults write
-/Library/Preferences/com.apple.commerce AutoUpdate -bool TRUE
+/usr/bin/sudo /usr/bin/defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool TRUE

@@ -1,3 +1,1 @@
-/usr/bin/sudo /usr/bin/defaults write
-/Library/Preferences/com.apple.SoftwareUpdate
-AutomaticallyInstallMacOSUpdates -bool TRUE
+/usr/bin/sudo /usr/bin/defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool TRUE

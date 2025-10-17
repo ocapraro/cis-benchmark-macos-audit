@@ -4,7 +4,7 @@
     "id": "1_1",
     "regex": "No new software available",
     "result": "fail",
-    "time": 4104,
+    "time": 6698,
     "title": "1.1 Ensure All Apple-provided Software Is Current (Automated)"
   },
   {
@@ -36,7 +36,7 @@
     "id": "1_5",
     "regex": "true",
     "result": "fail",
-    "time": 26,
+    "time": 27,
     "title": "1.5 Ensure Install Application Updates from the App Store Is Enabled (Automated)"
   },
   {
@@ -52,7 +52,7 @@
     "id": "2_1_1",
     "regex": "true",
     "result": "success",
-    "time": 26,
+    "time": 25,
     "title": "2.1.1 Ensure Firewall Is Enabled (Automated)"
   },
   {
@@ -68,7 +68,7 @@
     "id": "2_2_1_1",
     "regex": "On",
     "result": "fail",
-    "time": 21,
+    "time": 22,
     "title": "2.2.1.1 Ensure Set Time and Date Automatically Is Enabled (Automated)"
   },
   {
@@ -76,7 +76,7 @@
     "id": "2_2_1_2",
     "regex": "1",
     "result": "success",
-    "time": 15,
+    "time": 14,
     "title": "2.2.1.2 Ensure the Time Service Is Enabled (Automated)"
   },
   {
@@ -92,7 +92,7 @@
     "id": "2_2_2_2",
     "regex": "false",
     "result": "success",
-    "time": 27,
+    "time": 26,
     "title": "2.2.2.2 Ensure Content Caching Is Disabled (Automated)"
   },
   {
@@ -100,7 +100,7 @@
     "id": "2_3_1",
     "regex": "0\n0\n2",
     "result": "success",
-    "time": 40,
+    "time": 38,
     "title": "2.3.1 Ensure Sending Diagnostic and Usage Data to Apple Is Disabled (Automated)"
   },
   {
@@ -108,7 +108,7 @@
     "id": "2_3_2",
     "regex": "0",
     "result": "success",
-    "time": 16,
+    "time": 15,
     "title": "2.3.2 Ensure Limit Ad Tracking Is Enabled (Automated)"
   },
   {
@@ -128,43 +128,131 @@
     "title": "2.4.1 Ensure an Inactivity Interval of 20 Minutes Or Less for the Screen Saver Is Enabled (Automated)"
   },
   {
-    "description": "",
-    "id": "",
-    "regex": "true",
-    "result": "error",
-    "time": 4,
-    "title": ""
+    "description": "Sleep and screen saver modes are low power modes that reduce electrical consumption while the system is not in use.",
+    "id": "2_4_2",
+    "regex": "screenLock delay is (?:immediate|[1-5] seconds?)",
+    "result": "fail",
+    "time": 22,
+    "title": "2.4.2 Ensure Require Password After Screen Saver Begins or Display Is Turned Off Is Enabled for 5 Seconds or Immediately (Automated)"
   },
   {
-    "description": "",
-    "id": "",
-    "regex": "true",
-    "result": "error",
-    "time": 3,
-    "title": ""
+    "description": "An access warning informs the user that the system is reserved for authorized use only, and that the use of the system may be monitored.",
+    "id": "2_4_3",
+    "regex": ".+",
+    "result": "success",
+    "time": 27,
+    "title": "2.4.3 Ensure a Custom Message for the Login Screen Is Enabled (Automated)"
   },
   {
-    "description": "",
-    "id": "",
+    "description": "The login window prompts a user for his/her credentials, verifies their authorization level, and then allows or denies the user access to the system.",
+    "id": "2_4_4",
     "regex": "true",
-    "result": "error",
-    "time": 3,
-    "title": ""
+    "result": "fail",
+    "time": 25,
+    "title": "2.4.4 Ensure Login Window Displays as Name and Password Is Enabled (Automated)"
   },
   {
-    "description": "",
-    "id": "",
-    "regex": "true",
-    "result": "error",
-    "time": 4,
-    "title": ""
+    "description": "Password hints are user-created text displayed when an incorrect password is used for an account.",
+    "id": "2_4_5",
+    "regex": "0",
+    "result": "fail",
+    "time": 26,
+    "title": "2.4.5 Ensure Show Password Hints Is Disabled (Automated)"
   },
   {
-    "description": "",
+    "description": "Password hints help the user recall their passwords for various systems and/or accounts. In most cases, password hints are simple and closely related to the user's password.",
+    "id": "2_5_1",
+    "regex": "^[^\\s]*$",
+    "result": "success",
+    "time": 27,
+    "title": "2.5.1 Ensure Users' Accounts Do Not Have a Password Hint (Automated)"
+  },
+  {
+    "title": "2.6.1 Ensure Guest Account Is Disabled (Automated)",
+    "id": "2_6_1",
+    "description": "The guest account allows users access to the system without having to create an account or password. Guest users are unable to make setting changes and cannot remotely login to the system. All files, caches, and passwords created by the guest user are deleted upon logging out.",
+    "regex": "false",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
     "id": "",
+    "description": "",
     "regex": "true",
-    "result": "error",
-    "time": 3,
-    "title": ""
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
+  },
+  {
+    "title": "",
+    "id": "",
+    "description": "",
+    "regex": "true",
+    "result": "success",
+    "time": 0
   }
 ]
