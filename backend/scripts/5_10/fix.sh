@@ -1,1 +1,1 @@
-/usr/bin/sudo -u ocapraro /usr/bin/defaults write -app Terminal
+/usr/bin/sudo -u ocapraro /usr/bin/defaults write -app Terminal SecureKeyboardEntry -bool true
