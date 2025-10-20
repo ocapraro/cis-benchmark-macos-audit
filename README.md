@@ -16,7 +16,7 @@ Upon running the automated script, it will execute the commands given by the CIS
 3. Run `sudo node main.js` to execute the auditing script
 4. Open `./frontend/index.html` in your browser
 
-## Moving Forward
+## Roadmap
 1. Use local user's username
 2. Fix permission denied scripts
 3. Package into an app
