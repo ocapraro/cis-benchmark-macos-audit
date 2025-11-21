@@ -2,7 +2,7 @@
   {
     "description": "The cramfs filesystem type is a compressed read-only Linux filesystem embedded in small footprint systems. A cramfs image can be used without having to first decompress the image. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
     "id": "1_1_1_1",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.1.1 Ensure cramfs kernel module is not available (Automated)"
@@ -10,7 +10,7 @@
   {
     "description": "The freevxfs filesystem type is a free version of the Veritas type filesystem. This is the primary filesystem type for HP-UX operating systems. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
     "id": "1_1_1_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.1.2 Ensure freevxfs kernel module is not available"
@@ -18,7 +18,7 @@
   {
     "description": "The hfs filesystem type is a hierarchical filesystem that allows you to mount Mac OS filesystems. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
     "id": "1_1_1_3",
-    "regex": "hfs exists in",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.1.3 Ensure hfs kernel module is not available (Automated)"
@@ -26,7 +26,7 @@
   {
     "description": "The hfsplus filesystem type is a hierarchical filesystem designed to replace hfs that allows you to mount Mac OS filesystems. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
     "id": "1_1_1_4",
-    "regex": "hfsplus exists",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.1.4 Ensure hfsplus kernel module is not available (Automated)"
@@ -34,7 +34,7 @@
   {
     "description": "The jffs2 (journaling flash filesystem 2) filesystem type is a log-structured filesystem used in flash memory devices. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
     "id": "1_1_1_5",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.1.5 Ensure jffs2 kernel module is not available (Automated)"
@@ -42,7 +42,7 @@
   {
     "description": "The Linux overlay kernel module, commonly referred to as Overlayfs, is a union mount filesystem. It allows the user to overlay one file system on top of another, and creates a single, unified view. Disabling the overlay kernel module reduces the local attack surface by removing support for unnecessary filesystem types and mitigates potential risks associated with unauthorized execution of setuid files, enhancing the overall system security.",
     "id": "1_1_1_6",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.1.6 Ensure overlay kernel module is not available (Automated)"
@@ -50,7 +50,7 @@
   {
     "description": "Verify the udf kernel module is not available on the system or has been disabled. If the udf kernel module is not needed, it should be disabled to reduce the local attack surface.",
     "id": "1_1_1_8",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.1.8 Ensure udf kernel module is not available (Automated)"
@@ -58,7 +58,7 @@
   {
     "description": "Verify the firewire-core kernel module is not available on the system or has been disabled.",
     "id": "1_1_1_9",
-    "regex": "firewire-core exists in",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.1.9 Ensure firewire-core kernel module is not available"
@@ -66,7 +66,7 @@
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /tmp filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /tmp.",
     "id": "1_1_2_1_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.1.2 Ensure nodev option set on /tmp partition (Automated)"
@@ -74,7 +74,7 @@
   {
     "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /tmp filesystem, which is intended for temporary file storage, to prevent users from creating setuid files in /tmp.",
     "id": "1_1_2_1_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.1.3 Ensure nosuid option set on /tmp partition (Automated)"
@@ -82,7 +82,7 @@
   {
     "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries. This is important for the /tmp filesystem, which is intended for temporary file storage, to prevent users from running executable binaries from /tmp.",
     "id": "1_1_2_1_4",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.1.4 Ensure noexec option set on /tmp partition (Automated)"
@@ -98,7 +98,7 @@
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot attempt to create special devices in /dev/shm partitions.",
     "id": "1_1_2_2_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.2.2 Ensure nodev option set on /dev/shm partition"
@@ -114,7 +114,7 @@
   {
     "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries.",
     "id": "1_1_2_2_4",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.2.4 Ensure noexec option set on /dev/shm partition"
@@ -122,7 +122,7 @@
   {
     "description": "The /home directory is used to support disk storage needs of local users. Configuring /home as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
     "id": "1_1_2_3_1",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 10,
     "title": "1.1.2.3.1 Ensure separate partition exists for /home (Automated)"
@@ -130,7 +130,7 @@
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /home filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /home.",
     "id": "1_1_2_3_2",
-    "regex": "^Nothing should be returned$",
+    "regex": "Nothing should be returned",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.3.2 Ensure nodev option set on /home partition (Automated)"
@@ -146,7 +146,7 @@
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot create a block or character special devices in /var, which is not intended to support devices.",
     "id": "1_1_2_4_2",
-    "regex": "^Nothing should be returned$",
+    "regex": "Nothing should be returned",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.4.2 Ensure nodev option set on /var partition (Automated)"
@@ -154,7 +154,7 @@
   {
     "description": "The /var/tmp directory is a world-writable directory used for temporary storage by all users and some applications. Temporary files residing in /var/tmp are to be preserved between reboots. Configuring /var/tmp as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
     "id": "1_1_2_5_1",
-    "regex": "^/var/tmp\\s+.*mounted$",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.5.1 Ensure separate partition exists for /var/tmp"
@@ -162,7 +162,7 @@
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /var/tmp filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /var/tmp.",
     "id": "1_1_2_5_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.5.2 Ensure nodev option set on /var/tmp partition"
@@ -170,7 +170,7 @@
   {
     "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for security as it prevents users from creating setuid files in /var/tmp, which is intended for temporary file storage.",
     "id": "1_1_2_5_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.5.3 Ensure nosuid option set on /var/tmp partition"
@@ -178,7 +178,7 @@
   {
     "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries.",
     "id": "1_1_2_5_4",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.5.4 Ensure noexec option set on /var/tmp partition"
@@ -186,7 +186,7 @@
   {
     "description": "The /var/log directory is used by system services to store log data. Configuring /var/log as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
     "id": "1_1_2_6_1",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.6.1 Ensure separate partition exists for /var/log (Automated)"
@@ -194,7 +194,7 @@
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /var/log filesystem, which is not intended to support devices, ensuring that users cannot create a block or character special devices in /var/log.",
     "id": "1_1_2_6_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.6.2 Ensure nodev option set on /var/log partition"
@@ -202,7 +202,7 @@
   {
     "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /var/log filesystem, which is intended solely for log files, to prevent users from creating setuid files in this directory.",
     "id": "1_1_2_6_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.6.3 Ensure nosuid option set on /var/log partition"
@@ -210,7 +210,7 @@
   {
     "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries.",
     "id": "1_1_2_6_4",
-    "regex": "^.*noexec.*$",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.6.4 Ensure noexec option set on /var/log partition"
@@ -218,7 +218,7 @@
   {
     "description": "The auditing daemon, auditd, stores log data in the /var/log/audit directory. Configuring /var/log/audit as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
     "id": "1_1_2_7_1",
-    "regex": "/var/log/audit.*mounted",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.7.1 Ensure separate partition exists for /var/log/audit (Automated)"
@@ -226,7 +226,7 @@
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /var/log/audit filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /var/log/audit.",
     "id": "1_1_2_7_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.7.2 Ensure nodev option set on /var/log/audit partition"
@@ -250,7 +250,7 @@
   {
     "description": "Ensure that GPG keys are configured correctly for your system to verify package integrity during and after installation.",
     "id": "1_2_1_1",
-    "regex": "PASS",
+    "regex": "gpgkey=",
     "result": "fail",
     "time": 60,
     "title": "1.2.1.1 Ensure GPG keys are configured (Manual)"
@@ -258,7 +258,7 @@
   {
     "description": "The gpgcheck option controls verifying package signatures after download. This option is configurable as a global option in the main section of /etc/dnf/dnf.conf and a per repository option in individual files in the /etc/yum.repos.d/* directory. The option is enabled if gpgcheck is set to 1, true, or yes. The option is disabled if gpgcheck is set to 0, false, or no. If an invalid option is set, e.g. gpgcheck=2, the global option will be used. Settings in files in the /etc/yum.repos.d/ directory take precedence over the global configuration.",
     "id": "1_2_1_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 10,
     "title": "1.2.1.2 Ensure gpgcheck is configured (Automated)"
@@ -274,7 +274,7 @@
   {
     "description": "Systems need to have the respective package manager repositories configured to ensure that the system is able to receive the latest patches and updates.",
     "id": "1_2_1_4",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.2.1.4 Ensure package manager repositories are configured"
@@ -290,7 +290,7 @@
   {
     "description": "Security vulnerabilities and functional improvements are regularly addressed through software updates and patches. It is recommended that operating system updates be performed on enterprise assets through automated patch management on a monthly, or more frequent, basis.",
     "id": "1_2_2_1",
-    "regex": "^No packages marked for update$",
+    "regex": "^$",
     "result": "fail",
     "time": 60,
     "title": "1.2.2.1 Ensure updates, patches, and additional security software are installed (Manual)"
@@ -306,7 +306,7 @@
   {
     "description": "Configure SELINUX to be enabled at boot time and verify that it has not been overwritten by the grub boot parameters.",
     "id": "1_3_1_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.3.1.2 Ensure SELinux is not disabled in bootloader configuration (Automated)"
@@ -314,7 +314,7 @@
   {
     "description": "Configure SELinux to meet or exceed the default targeted policy, which constrains daemons and system software only.",
     "id": "1_3_1_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.3.1.3 Ensure SELinux policy is configured (Automated)"
@@ -322,7 +322,7 @@
   {
     "description": "Ensure that SELinux is not running in disabled mode, as this compromises system security by not enforcing the SELinux policy.",
     "id": "1_3_1_4",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 10,
     "title": "1.3.1.4 Ensure the SELinux mode is not disabled (Automated)"
@@ -354,7 +354,7 @@
   {
     "description": "Setting the boot loader password will require that anyone rebooting the system must enter a password before being able to set command line boot parameters.",
     "id": "1_4_1",
-    "regex": "GRUB2_PASSWORD=grub.pbkdf2.sha512",
+    "regex": "GRUB2_PASSWORD=grub\\.pbkdf2\\.sha512",
     "result": "fail",
     "time": 30,
     "title": "1.4.1 Ensure bootloader password is set (Automated)"
@@ -370,7 +370,7 @@
   {
     "description": "Ensure that the hard limit for core file size is set to 0 for all users to prevent sensitive data from being included in core dumps.",
     "id": "1_5_1",
-    "regex": "^/etc/security/limits.d/.*:.*hard core 0$",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.5.1 Ensure core file size is configured (Automated)"
@@ -378,7 +378,7 @@
   {
     "description": "fs.protected_hardlinks Controls the creation of hard links to files. By enabling the fs.protected_hardlinks kernel parameter, users can no longer create soft or hard links to files they do not own.",
     "id": "1_5_2",
-    "regex": "fs\\.protected_hardlinks\\s*=\\s*1",
+    "regex": "fs\\.protected_hardlinks = 1",
     "result": "fail",
     "time": 10,
     "title": "1.5.2 Ensure fs.protected_hardlinks is configured (Automated)"
@@ -394,7 +394,7 @@
   {
     "description": "fs.suid_dumpable governs whether a privileged process (with the setuid bit) can generate a core dump, regardless of other configurations. The default value should be set to 0 to prevent sensitive data from being exposed in core dumps.",
     "id": "1_5_4",
-    "regex": "fs.suid_dumpable = 0",
+    "regex": "fs\\.suid_dumpable = 0",
     "result": "fail",
     "time": 10,
     "title": "1.5.4 Ensure fs.suid_dumpable is configured (Automated)"
@@ -402,7 +402,7 @@
   {
     "description": "kernel.dmesg_restrict can be used to configure the Linux kernel and prevent unprivileged users access to information from the kernel's log buffer.",
     "id": "1_5_5",
-    "regex": "kernel\\.dmesg_restrict\\s*=\\s*1",
+    "regex": "kernel\\.dmesg_restrict = 1",
     "result": "fail",
     "time": 10,
     "title": "1.5.5 Ensure kernel.dmesg_restrict is configured (Automated)"
@@ -410,7 +410,7 @@
   {
     "description": "Verify kernel.kptr_restrict is set to a value of: 1 or 2. This setting controls the exposure of kernel addresses, which can help mitigate the risk of attacks that exploit kernel information.",
     "id": "1_5_6",
-    "regex": "kernel\\.kptr_restrict\\s*=\\s*[12]",
+    "regex": "kernel\\.kptr_restrict = [12]",
     "result": "fail",
     "time": 10,
     "title": "1.5.6 Ensure kernel.kptr_restrict is configured (Automated)"
@@ -426,7 +426,7 @@
   {
     "description": "Ensure that the system-wide crypto policy is not set to LEGACY, which allows the use of outdated and less secure algorithms and protocols.",
     "id": "1_6_1",
-    "regex": "^\\s*LEGACY\\b",
+    "regex": "^$",
     "result": "fail",
     "time": 10,
     "title": "1.6.1 Ensure system wide crypto policy is not set to legacy"
@@ -434,7 +434,7 @@
   {
     "description": "Ensure that the system-wide cryptographic policy disables SHA-1 hash and signature support to mitigate vulnerabilities associated with this weak hash function.",
     "id": "1_6_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.6.2 Ensure system wide crypto policy disables sha1 hash and signature support (Automated)"
@@ -442,7 +442,7 @@
   {
     "description": "Verify that weak Message Authentication Code (MAC) algorithms are disabled in the system-wide crypto policy.",
     "id": "1_6_3",
-    "regex": "^\\s*mac\\s*=\\s*([^#\\n\\r]+)?-128\\b",
+    "regex": "^$",
     "result": "fail",
     "time": 10,
     "title": "1.6.3 Ensure system wide crypto policy macs are configured"
@@ -450,7 +450,7 @@
   {
     "description": "Ensure that the system-wide crypto policy disables CBC for SSH to mitigate vulnerabilities associated with the CBC mode in SSH messages.",
     "id": "1_6_4",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.6.4 Ensure system wide crypto policy disables cbc for ssh"
@@ -458,7 +458,7 @@
   {
     "description": "GDM is the GNOME Display Manager which handles graphical login for GNOME based systems. This control ensures that the login banner configuration is locked to prevent users from changing it, thereby informing them of their legal status regarding the system.",
     "id": "1_8_1",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.8.1 Ensure GDM login banner is configured (Automated)"
@@ -474,7 +474,7 @@
   {
     "description": "Ensure that the GDM screen lock settings are configured to prevent unauthorized access when the user is idle.",
     "id": "1_8_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.8.3 Ensure GDM screen lock is configured (Automated)"
@@ -498,7 +498,7 @@
   {
     "description": "The GNOME Display Manager (GDM) is a program that manages graphical display servers and handles graphical user logins. If a Graphical User Interface (GUI) is not required, it should be removed to reduce the attack surface of the system.",
     "id": "2_1_19",
-    "regex": "Installed Environment Groups:.*Server",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "2.1.19 Ensure GNOME Display Manager is removed (Automated)"
@@ -546,7 +546,7 @@
   {
     "description": "The file /etc/sysconfig/chronyd allows configuration of options for chrony to include the user chrony is run as. By default, this is set to the user chrony. Services should not be set to run as the root user.",
     "id": "2_3_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "2.3.3 Ensure chrony is not run as the root user (Automated)"
@@ -554,7 +554,7 @@
   {
     "description": "The cron daemon is used to execute batch jobs on the system. It is essential for running maintenance jobs, including security monitoring tasks.",
     "id": "2_4_1_1",
-    "regex": "enabled\\s+active",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "2.4.1.1 Ensure cron daemon is enabled and active (Automated)"
@@ -616,9 +616,9 @@
     "title": "2.4.1.8 Ensure access to /etc/cron.d is configured (Automated)"
   },
   {
-    "description": "Configure data access control lists based on a user’s need to know. Apply data access control lists, also known as access permissions, to local and remote file systems, databases, and applications.",
+    "description": "Configure data access control lists based on a user's need to know. Apply data access control lists, also known as access permissions, to local and remote file systems, databases, and applications.",
     "id": "3_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "3.3 Configure Data Access Control Lists"
@@ -666,7 +666,7 @@
   {
     "description": "The FirewallBackend option selects the firewall backend implementation, ensuring that the critical functionality of the firewall is maintained by using the recommended backend.",
     "id": "4_1_2",
-    "regex": "PASS",
+    "regex": "FirewallBackend=nftables",
     "result": "fail",
     "time": 30,
     "title": "4.1.2 Ensure firewalld backend is configured (Automated)"
@@ -682,7 +682,7 @@
   {
     "description": "Implement and manage a firewall on servers, where supported. Example implementations include a virtual firewall, operating system firewall, or a third-party firewall agent.",
     "id": "4_4",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "4.4 Implement and Manage a Firewall on Servers"
@@ -690,7 +690,7 @@
   {
     "description": "Implement and manage a host-based firewall or port-filtering tool on end-user devices, with a default-deny rule that drops all traffic except those services and ports that are explicitly allowed.",
     "id": "4_5",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "4.5 Implement and Manage a Firewall on End-User Devices"
@@ -714,7 +714,7 @@
   {
     "description": "Use unique passwords for all enterprise assets. Best practice implementation includes, at a minimum, an 8-character password for accounts using MFA and a 14-character password for accounts not using MFA.",
     "id": "5_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "5.2 Use Unique Passwords"
@@ -722,7 +722,7 @@
   {
     "description": "Ensure that local logging has been enabled on all systems and networking devices.",
     "id": "6_2",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "6.2 Activate audit logging"
@@ -730,7 +730,7 @@
   {
     "description": "Enable system logging to include detailed information such as an event source, date, user, timestamp, source addresses, destination addresses, and other useful elements.",
     "id": "6_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "6.3 Enable Detailed Logging"
@@ -738,7 +738,7 @@
   {
     "description": "Ensure that all systems that store logs have adequate storage space for the logs generated.",
     "id": "6_4",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 60,
     "title": "6.4 Ensure adequate storage for logs"
@@ -778,7 +778,7 @@
   {
     "description": "The /etc/shadow file is used to store the information about user accounts that is critical to the security of those accounts, such as the hashed password and other security information. It is essential to ensure that access to this file is restricted to prevent unauthorized access and potential exploitation.",
     "id": "7_1_5",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 10,
     "title": "7.1.5 Ensure access to /etc/shadow is configured (Automated)"
@@ -818,7 +818,7 @@
   {
     "description": "/etc/security/opasswd and its backup /etc/security/opasswd.old hold user's previous passwords if pam_unix or pam_pwhistory is in use on the system. It is critical to ensure that /etc/security/opasswd is protected from unauthorized access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
     "id": "7_1_10",
-    "regex": "^.*Access: \\(0600/-rw-------\\).*",
+    "regex": "Access: \\(0600/-rw-------\\)",
     "result": "fail",
     "time": 30,
     "title": "7.1.10 Ensure access to /etc/security/opasswd is configured (Automated)"
@@ -826,7 +826,7 @@
   {
     "description": "Local accounts can use shadowed passwords. With shadowed passwords, the passwords are saved in shadow password file, /etc/shadow, encrypted by a salted one-way hash. Accounts with a shadowed password have an x in the second field in /etc/passwd.",
     "id": "7_2_1",
-    "regex": "^User: \".*\" is not set to shadowed passwords",
+    "regex": "^$",
     "result": "fail",
     "time": 10,
     "title": "7.2.1 Ensure accounts in /etc/passwd use shadowed passwords"
@@ -842,7 +842,7 @@
   {
     "description": "Over time, system administration errors and changes can lead to groups being defined in /etc/passwd but not in /etc/group. Groups defined in the /etc/passwd file but not in the /etc/group file pose a threat to system security since group permissions are not properly managed.",
     "id": "7_2_3",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "7.2.3 Ensure all groups in /etc/passwd exist in /etc/group"
@@ -850,7 +850,7 @@
   {
     "description": "Ensure that no duplicate User IDs (UIDs) exist in the system to maintain accountability and appropriate access protections.",
     "id": "7_2_4",
-    "regex": "^Duplicate UID:",
+    "regex": "^$",
     "result": "fail",
     "time": 60,
     "title": "7.2.4 Ensure no duplicate UIDs exist (Automated)"
@@ -858,7 +858,7 @@
   {
     "description": "Ensure that no duplicate Group IDs (GIDs) exist in the system to maintain accountability and appropriate access protections.",
     "id": "7_2_5",
-    "regex": "PASS",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "7.2.5 Ensure no duplicate GIDs exist (Automated)"
@@ -866,7 +866,7 @@
   {
     "description": "Ensure that no duplicate user names exist in the system, as this can lead to security issues with shared UIDs.",
     "id": "7_2_6",
-    "regex": "^Duplicate User:",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "7.2.6 Ensure no duplicate user names exist (Automated)"
@@ -874,7 +874,7 @@
   {
     "description": "Ensure that no duplicate group names exist in the system, as this can lead to security issues with shared GIDs.",
     "id": "7_2_7",
-    "regex": "^Duplicate Group:",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "7.2.7 Ensure no duplicate group names exist (Automated)"
@@ -882,7 +882,7 @@
   {
     "description": "Ensure that local interactive user dot files have secure permissions to prevent unauthorized access and modifications by malicious users.",
     "id": "7_2_9",
-    "regex": "^.*(mode 0644|mode 0600).*",
+    "regex": "0644|0600",
     "result": "fail",
     "time": 30,
     "title": "7.2.9 Ensure local interactive user dot files access is configured"
