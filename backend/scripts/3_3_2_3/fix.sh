@@ -1,0 +1,1 @@
+sysctl -w net.ipv6.conf.all.accept_redirects=0

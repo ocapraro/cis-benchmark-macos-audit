@@ -1,1 +1,1 @@
-firewall-cmd --list-all | grep -q 'active' && echo 'PASS' || echo 'FAIL'
+systemctl is-active firewalld.service | grep 'active' && echo 'PASS' || echo 'FAIL'

@@ -1,1 +1,1 @@
-gsettings set org.gnome.login-screen disable-user-list true
+gsettings set org.gnome.login-screen disable-user-list true; exit 0

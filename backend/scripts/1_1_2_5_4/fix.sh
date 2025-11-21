@@ -1,1 +1,5 @@
-sed -i 's|<device> /var/tmp    <fstype>     defaults|<device> /var/tmp    <fstype>     defaults,rw,nosuid,nodev,noexec,relatime|' /etc/fstab; mount -o remount /var/tmp; exit 0
+# Edit /etc/fstab to add noexec option for /var/tmp
+# Example entry:
+# <device> /var/tmp    <fstype>     defaults,rw,nosuid,nodev,noexec,relatime  0 0
+# Remount the partition
+mount -o remount /var/tmp

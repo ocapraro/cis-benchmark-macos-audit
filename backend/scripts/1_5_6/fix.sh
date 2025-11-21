@@ -1,1 +1,1 @@
-sysctl -w kernel.kptr_restrict=2
+echo 'kernel.kptr_restrict=2' >> /etc/sysctl.conf && sysctl -p

@@ -1,6 +1,1 @@
-# To disable CBC for SSH, edit the crypto policy file:
-# vi /etc/crypto-policies/state/CURRENT.pol
-# Ensure that CBC is not listed under the cipher settings.
-# After editing, apply the changes:
-# update-crypto-policies --set CURRENT
-exit 0
+echo 'Disabling CBC for SSH...'; sed -i 's/\(cipher\s*=\s*\)\(.*\)\(-CBC\b\)/\1\2/g' /etc/crypto-policies/state/CURRENT.pol; exit 0;

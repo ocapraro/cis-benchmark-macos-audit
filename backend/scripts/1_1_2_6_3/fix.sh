@@ -1,1 +1,1 @@
-sed -i 's/\(\/var\/log\s\+\S\+\s\+\S\+\s\+\)defaults/\1defaults,nosuid/' /etc/fstab; mount -o remount /var/log; exit 0;
+sed -i 's|<device> /var/log    <fstype>     defaults|<device> /var/log    <fstype>     defaults,rw,nosuid,nodev,noexec,relatime|' /etc/fstab && mount -o remount /var/log

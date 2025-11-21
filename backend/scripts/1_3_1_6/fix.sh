@@ -1,1 +1,1 @@
-# Review SELinux policies and confine services as necessary. Ensure that services requiring unconfined access are justified and documented. Exit 2.
+# Investigate any unconfined processes found during the audit action. If necessary, create a customized SELinux policy to allow necessary actions for the service.

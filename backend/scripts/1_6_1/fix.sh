@@ -1,1 +1,1 @@
-echo 'Setting crypto policy to default'; update-crypto-policies --set DEFAULT; exit 0
+echo 'Update the crypto policy to a more secure level, e.g., DEFAULT or FIPS.'; update-crypto-policies --set DEFAULT; exit 0

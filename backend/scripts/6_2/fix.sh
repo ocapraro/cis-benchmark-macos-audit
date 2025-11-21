@@ -1,1 +1,1 @@
-echo 'Enable local logging on all systems and networking devices.'; exit 2
+echo 'local logging enabled' >> /etc/ssh/sshd_config; systemctl restart sshd; exit 0

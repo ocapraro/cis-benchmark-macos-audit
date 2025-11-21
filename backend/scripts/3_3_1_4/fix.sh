@@ -1,0 +1,1 @@
+sysctl -w net.ipv4.conf.all.send_redirects=0

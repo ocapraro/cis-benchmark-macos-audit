@@ -1,1 +1,1 @@
-echo 'FirewallBackend=nftables' >> /etc/firewalld/firewalld.conf; systemctl restart firewalld; exit 0
+sed -i 's/^FirewallBackend=.*/FirewallBackend=nftables/' /etc/firewalld/firewalld.conf; systemctl restart firewalld; exit 0

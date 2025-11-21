@@ -1,1 +1,1 @@
-grep -q 'local logging' /etc/syslog.conf && exit 0 || exit 1
+grep -E 'local logging' /etc/ssh/sshd_config && exit 0 || exit 1

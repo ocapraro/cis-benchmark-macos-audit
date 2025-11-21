@@ -1,1 +1,1 @@
-iptables -L | grep -q 'DROP' && echo 'PASS' || echo 'FAIL'
+firewall-cmd --list-all | grep -q 'default-deny' && echo 'PASS' || echo 'FAIL'

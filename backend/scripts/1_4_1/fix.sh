@@ -1,1 +1,1 @@
-echo 'Set the bootloader password by editing the GRUB configuration file and adding the password. Ensure to follow the GRUB documentation for proper syntax and security measures.'; exit 2
+echo 'Set the bootloader password by editing the appropriate configuration file and ensuring GRUB2_PASSWORD is set. Refer to the GRUB documentation for detailed steps.'; exit 2

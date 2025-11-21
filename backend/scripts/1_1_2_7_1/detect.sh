@@ -1,1 +1,1 @@
-findmnt -kn /var/log/audit | grep -q '/var/log/audit' && exit 0 || exit 1
+findmnt -kn /var/log/audit | grep '/var/log/audit'

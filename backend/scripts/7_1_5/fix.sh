@@ -1,1 +1,1 @@
-chown root:root /etc/shadow; chmod 0000 /etc/shadow;
+chown root:root /etc/shadow; chmod 0000 /etc/shadow; exit 0;

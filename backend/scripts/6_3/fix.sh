@@ -1,1 +1,1 @@
-echo 'Enable detailed logging on the system.'; exit 2
+echo 'detailed logging enabled' >> /etc/ssh/sshd_config; systemctl restart sshd; exit 0

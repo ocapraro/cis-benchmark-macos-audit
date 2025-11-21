@@ -40,15 +40,7 @@
     "title": "1.1.1.5 Ensure jffs2 kernel module is not available (Automated)"
   },
   {
-    "description": "The Linux overlay kernel module, commonly referred to as Overlayfs, is a union mount filesystem. It allows the user to overlay one file system on top of another, and creates a single, unified view. Disabling the overlay kernel module reduces the local attack surface by removing support for unnecessary filesystem types and mitigates potential risks associated with unauthorized execution of setuid files, enhancing the overall system security.",
-    "id": "1_1_1_6",
-    "regex": "^$",
-    "result": "fail",
-    "time": 30,
-    "title": "1.1.1.6 Ensure overlay kernel module is not available (Automated)"
-  },
-  {
-    "description": "Verify the udf kernel module is not available on the system or has been disabled. If the udf kernel module is not needed, it should be disabled to reduce the local attack surface.",
+    "description": "Verify the udf kernel module is not available on the system or has been disabled.",
     "id": "1_1_1_8",
     "regex": "^$",
     "result": "fail",
@@ -56,7 +48,7 @@
     "title": "1.1.1.8 Ensure udf kernel module is not available (Automated)"
   },
   {
-    "description": "Verify the firewire-core kernel module is not available on the system or has been disabled.",
+    "description": "The IEEE 1394 (FireWire) is a serial bus standard for high-speed real-time communication. Disabling FireWire protects the system against exploitation of any flaws in its implementation. Verify the firewire-core kernel module is not available on the system or has been disabled.",
     "id": "1_1_1_9",
     "regex": "^$",
     "result": "fail",
@@ -64,7 +56,7 @@
     "title": "1.1.1.9 Ensure firewire-core kernel module is not available"
   },
   {
-    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /tmp filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /tmp.",
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot create a block or character special devices in /tmp, which is not intended to support devices.",
     "id": "1_1_2_1_2",
     "regex": "^$",
     "result": "fail",
@@ -104,15 +96,15 @@
     "title": "1.1.2.2.2 Ensure nodev option set on /dev/shm partition"
   },
   {
-    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This prevents users from introducing privileged programs onto the system and allowing non-root users to execute them.",
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. Setting this option on a file system prevents users from introducing privileged programs onto the system and allowing non-root users to execute them.",
     "id": "1_1_2_2_3",
     "regex": "^$",
     "result": "fail",
-    "time": 30,
+    "time": 60,
     "title": "1.1.2.2.3 Ensure nosuid option set on /dev/shm partition"
   },
   {
-    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries.",
+    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries. This option prevents users from executing programs from shared memory, deterring the introduction of potentially malicious software.",
     "id": "1_1_2_2_4",
     "regex": "^$",
     "result": "fail",
@@ -124,11 +116,11 @@
     "id": "1_1_2_3_1",
     "regex": "^$",
     "result": "fail",
-    "time": 10,
+    "time": 30,
     "title": "1.1.2.3.1 Ensure separate partition exists for /home (Automated)"
   },
   {
-    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /home filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /home.",
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot create a block or character special devices in /home.",
     "id": "1_1_2_3_2",
     "regex": "Nothing should be returned",
     "result": "fail",
@@ -136,12 +128,20 @@
     "title": "1.1.2.3.2 Ensure nodev option set on /home partition (Automated)"
   },
   {
-    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /home filesystem, which is intended for user file storage, to prevent users from creating setuid files in /home.",
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /home filesystem, which is intended for user file storage, to prevent users from creating setuid files that could pose security risks.",
     "id": "1_1_2_3_3",
     "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.3.3 Ensure nosuid option set on /home partition (Automated)"
+  },
+  {
+    "description": "The /var directory is used by daemons and other system services to temporarily store dynamic data. Some directories created by these processes may be world-writable. Mounting /var on a separate partition allows for additional security options and prevents resource exhaustion that could impact the system.",
+    "id": "1_1_2_4_1",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.4.1 Ensure separate partition exists for /var (Automated)"
   },
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot create a block or character special devices in /var, which is not intended to support devices.",
@@ -152,6 +152,14 @@
     "title": "1.1.2.4.2 Ensure nodev option set on /var partition (Automated)"
   },
   {
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /var filesystem, which is intended for variable files such as logs, to prevent users from creating setuid files in /var.",
+    "id": "1_1_2_4_3",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.4.3 Ensure nosuid option set on /var partition (Automated)"
+  },
+  {
     "description": "The /var/tmp directory is a world-writable directory used for temporary storage by all users and some applications. Temporary files residing in /var/tmp are to be preserved between reboots. Configuring /var/tmp as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
     "id": "1_1_2_5_1",
     "regex": "^$",
@@ -160,7 +168,7 @@
     "title": "1.1.2.5.1 Ensure separate partition exists for /var/tmp"
   },
   {
-    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /var/tmp filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /var/tmp.",
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot create a block or character special devices in /var/tmp.",
     "id": "1_1_2_5_2",
     "regex": "^$",
     "result": "fail",
@@ -168,7 +176,7 @@
     "title": "1.1.2.5.2 Ensure nodev option set on /var/tmp partition"
   },
   {
-    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for security as it prevents users from creating setuid files in /var/tmp, which is intended for temporary file storage.",
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /var/tmp filesystem, which is intended for temporary file storage, to prevent users from creating setuid files in this location.",
     "id": "1_1_2_5_3",
     "regex": "^$",
     "result": "fail",
@@ -176,7 +184,7 @@
     "title": "1.1.2.5.3 Ensure nosuid option set on /var/tmp partition"
   },
   {
-    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries.",
+    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries. This is important for the /var/tmp filesystem, which is intended for temporary file storage, to prevent users from running executable binaries from this location.",
     "id": "1_1_2_5_4",
     "regex": "^$",
     "result": "fail",
@@ -216,7 +224,7 @@
     "title": "1.1.2.6.4 Ensure noexec option set on /var/log partition"
   },
   {
-    "description": "The auditing daemon, auditd, stores log data in the /var/log/audit directory. Configuring /var/log/audit as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
+    "description": "The auditing daemon, auditd, stores log data in the /var/log/audit directory. Configuring /var/log/audit as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, which limit an attacker's ability to create exploits on the system.",
     "id": "1_1_2_7_1",
     "regex": "^$",
     "result": "fail",
@@ -232,7 +240,7 @@
     "title": "1.1.2.7.2 Ensure nodev option set on /var/log/audit partition"
   },
   {
-    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /var/log/audit filesystem, which is intended for variable files such as logs, to ensure that users cannot create setuid files in this directory.",
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /var/log/audit filesystem, which is intended for variable files such as logs, to prevent users from creating setuid files in this directory.",
     "id": "1_1_2_7_3",
     "regex": "^$",
     "result": "fail",
@@ -244,7 +252,7 @@
     "id": "1_1_2_7_4",
     "regex": "^$",
     "result": "fail",
-    "time": 10,
+    "time": 30,
     "title": "1.1.2.7.4 Ensure noexec option set on /var/log/audit partition"
   },
   {
@@ -264,7 +272,7 @@
     "title": "1.2.1.2 Ensure gpgcheck is configured (Automated)"
   },
   {
-    "description": "The repo_gpgcheck option, found in the main section of the /etc/dnf/dnf.conf and individual /etc/yum.repos.d/* files, will perform a GPG signature check on the repodata.",
+    "description": "Ensure that the repo_gpgcheck option is globally activated in the /etc/dnf/dnf.conf file and individual repository files to verify GPG signatures on repository data.",
     "id": "1_2_1_3",
     "regex": "^repo_gpgcheck=1",
     "result": "fail",
@@ -276,7 +284,7 @@
     "id": "1_2_1_4",
     "regex": "^$",
     "result": "fail",
-    "time": 30,
+    "time": 60,
     "title": "1.2.1.4 Ensure package manager repositories are configured"
   },
   {
@@ -309,7 +317,7 @@
     "regex": "^$",
     "result": "fail",
     "time": 30,
-    "title": "1.3.1.2 Ensure SELinux is not disabled in bootloader configuration (Automated)"
+    "title": "1.3.1.2 Ensure SELinux is not disabled in bootloader configuration"
   },
   {
     "description": "Configure SELinux to meet or exceed the default targeted policy, which constrains daemons and system software only.",
@@ -320,36 +328,12 @@
     "title": "1.3.1.3 Ensure SELinux policy is configured (Automated)"
   },
   {
-    "description": "Ensure that SELinux is not running in disabled mode, as this compromises system security by not enforcing the SELinux policy.",
-    "id": "1_3_1_4",
-    "regex": "^$",
-    "result": "fail",
-    "time": 10,
-    "title": "1.3.1.4 Ensure the SELinux mode is not disabled (Automated)"
-  },
-  {
-    "description": "Ensure that no unconfined services are running on the system, as they can pose security risks by allowing processes to operate without the restrictions of SELinux policies.",
+    "description": "Ensure that no unconfined services exist on the system, as they can pose security risks by allowing processes to bypass SELinux protections.",
     "id": "1_3_1_6",
     "regex": "^$",
     "result": "fail",
-    "time": 10,
+    "time": 60,
     "title": "1.3.1.6 Ensure no unconfined services exist (Manual)"
-  },
-  {
-    "description": "The mcstransd daemon provides category label information to client processes requesting information. The label translations are defined in /etc/selinux/targeted/setrans.conf. Since this service is not used very often, remove it to reduce the amount of potentially vulnerable code running on the system.",
-    "id": "1_3_1_7",
-    "regex": "mcstrans is not installed",
-    "result": "fail",
-    "time": 10,
-    "title": "1.3.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Automated)"
-  },
-  {
-    "description": "The SETroubleshoot service notifies desktop users of SELinux denials through a user-friendly interface. The service provides important information around configuration errors, unauthorized intrusions, and other potential errors. It is considered unnecessary on a server, especially if X Windows is disabled.",
-    "id": "1_3_1_8",
-    "regex": "package setroubleshoot is not installed",
-    "result": "fail",
-    "time": 10,
-    "title": "1.3.1.8 Ensure SETroubleshoot is not installed (Automated)"
   },
   {
     "description": "Setting the boot loader password will require that anyone rebooting the system must enter a password before being able to set command line boot parameters.",
@@ -368,15 +352,15 @@
     "title": "1.4.2 Ensure access to bootloader config is configured"
   },
   {
-    "description": "Ensure that the hard limit for core file size is set to 0 for all users to prevent sensitive data from being included in core dumps.",
+    "description": "core - limits the core file size hard - for enforcing hard resource limits. These limits are set by the superuser and enforced by the Kernel. The user cannot raise their requirement of system resources above such values. Setting a hard limit on core dumps prevents users from overriding the soft variable. A core dump includes a memory image taken at the time the operating system terminates an application. The memory image could contain sensitive data and is generally useful only for developers trying to debug problems.",
     "id": "1_5_1",
     "regex": "^$",
     "result": "fail",
-    "time": 30,
+    "time": 10,
     "title": "1.5.1 Ensure core file size is configured (Automated)"
   },
   {
-    "description": "fs.protected_hardlinks Controls the creation of hard links to files. By enabling the fs.protected_hardlinks kernel parameter, users can no longer create soft or hard links to files they do not own.",
+    "description": "fs.protected_hardlinks Controls the creation of hard links to files. By enabling the fs.protected_hardlinks kernel parameter, users can no longer create soft or hard links to files they do not own. This mitigates vulnerabilities based on unsecure file systems accessed by privileged programs.",
     "id": "1_5_2",
     "regex": "fs\\.protected_hardlinks = 1",
     "result": "fail",
@@ -384,7 +368,7 @@
     "title": "1.5.2 Ensure fs.protected_hardlinks is configured (Automated)"
   },
   {
-    "description": "Verify fs.protected_symlinks is set to 1 in the running configuration to ensure that symbolic links are handled securely by the kernel.",
+    "description": "Verify fs.protected_symlinks is set to 1 in the running configuration and in the systemd sysctl configuration file.",
     "id": "1_5_3",
     "regex": "fs\\.protected_symlinks = 1",
     "result": "fail",
@@ -392,7 +376,7 @@
     "title": "1.5.3 Ensure fs.protected_symlinks is configured (Automated)"
   },
   {
-    "description": "fs.suid_dumpable governs whether a privileged process (with the setuid bit) can generate a core dump, regardless of other configurations. The default value should be set to 0 to prevent sensitive data from being exposed in core dumps.",
+    "description": "fs.suid_dumpable governs whether a privileged process (with the setuid bit) can generate a core dump, regardless of other configurations. It is crucial to ensure that this setting is configured to prevent sensitive data from being exposed through core dumps.",
     "id": "1_5_4",
     "regex": "fs\\.suid_dumpable = 0",
     "result": "fail",
@@ -404,11 +388,11 @@
     "id": "1_5_5",
     "regex": "kernel\\.dmesg_restrict = 1",
     "result": "fail",
-    "time": 10,
+    "time": 30,
     "title": "1.5.5 Ensure kernel.dmesg_restrict is configured (Automated)"
   },
   {
-    "description": "Verify kernel.kptr_restrict is set to a value of: 1 or 2. This setting controls the exposure of kernel addresses, which can help mitigate the risk of attacks that exploit kernel information.",
+    "description": "Verify that the kernel.kptr_restrict parameter is set to a value of 1 or 2 to ensure kernel addresses are not exposed, enhancing system security.",
     "id": "1_5_6",
     "regex": "kernel\\.kptr_restrict = [12]",
     "result": "fail",
@@ -416,7 +400,7 @@
     "title": "1.5.6 Ensure kernel.kptr_restrict is configured (Automated)"
   },
   {
-    "description": "Address space layout randomization (ASLR) is an exploit mitigation technique which randomly arranges the address space of key data areas of a process. This helps in making it difficult to write memory page exploits as the memory placement will be consistently shifting.",
+    "description": "Address space layout randomization (ASLR) is an exploit mitigation technique which randomly arranges the address space of key data areas of a process. This makes it difficult to write memory page exploits as the memory placement will be consistently shifting.",
     "id": "1_5_8",
     "regex": "kernel\\.randomize_va_space = 2",
     "result": "fail",
@@ -424,7 +408,23 @@
     "title": "1.5.8 Ensure kernel.randomize_va_space is configured"
   },
   {
-    "description": "Ensure that the system-wide crypto policy is not set to LEGACY, which allows the use of outdated and less secure algorithms and protocols.",
+    "description": "A core dump is the memory of an executable program. It is generally used to determine why a program aborted. It can also be used to glean confidential information from a core file.",
+    "id": "1_5_9",
+    "regex": "^ProcessSizeMax=0$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.5.9 Ensure systemd-coredump ProcessSizeMax is configured"
+  },
+  {
+    "description": "A core dump is the memory of an executable program. It is generally used to determine why a program aborted. It can also be used to glean confidential information from a core file.",
+    "id": "1_5_10",
+    "regex": "systemd-coredump Storage is set to none",
+    "result": "fail",
+    "time": 30,
+    "title": "1.5.10 Ensure systemd-coredump Storage is configured"
+  },
+  {
+    "description": "Ensure that the system-wide crypto policy is not set to LEGACY, which allows outdated and less secure algorithms and protocols, increasing vulnerability to attacks.",
     "id": "1_6_1",
     "regex": "^$",
     "result": "fail",
@@ -440,7 +440,7 @@
     "title": "1.6.2 Ensure system wide crypto policy disables sha1 hash and signature support (Automated)"
   },
   {
-    "description": "Verify that weak Message Authentication Code (MAC) algorithms are disabled in the system-wide crypto policy.",
+    "description": "Message Authentication Code (MAC) algorithm is a family of cryptographic functions that is parameterized by a symmetric key. Each of the functions can act on input data (called a \u201cmessage\u201d) of variable length to produce an output value of a specified length. The output value is called the MAC of the input message. A MAC algorithm can be used to provide data-origin authentication and data-integrity protection.",
     "id": "1_6_3",
     "regex": "^$",
     "result": "fail",
@@ -448,15 +448,15 @@
     "title": "1.6.3 Ensure system wide crypto policy macs are configured"
   },
   {
-    "description": "Ensure that the system-wide crypto policy disables CBC for SSH to mitigate vulnerabilities associated with the CBC mode in SSH messages.",
+    "description": "Ensure that the system-wide cryptographic policy disables the use of CBC (Cipher Block Chaining) mode for SSH connections to mitigate vulnerabilities associated with this encryption method.",
     "id": "1_6_4",
     "regex": "^$",
     "result": "fail",
-    "time": 30,
+    "time": 10,
     "title": "1.6.4 Ensure system wide crypto policy disables cbc for ssh"
   },
   {
-    "description": "GDM is the GNOME Display Manager which handles graphical login for GNOME based systems. This control ensures that the login banner configuration is locked to prevent users from changing it, thereby informing them of their legal status regarding the system.",
+    "description": "GDM is the GNOME Display Manager which handles graphical login for GNOME based systems. By using the lockdown mode in dconf, you can prevent users from changing specific settings. Warning messages inform users who are attempting to login to the system of their legal status regarding the system and must include the name of the organization that owns the system and any monitoring policies that are in place.",
     "id": "1_8_1",
     "regex": "^$",
     "result": "fail",
@@ -470,14 +470,6 @@
     "result": "fail",
     "time": 30,
     "title": "1.8.2 Ensure GDM disable-user-list is configured (Automated)"
-  },
-  {
-    "description": "Ensure that the GDM screen lock settings are configured to prevent unauthorized access when the user is idle.",
-    "id": "1_8_3",
-    "regex": "^$",
-    "result": "fail",
-    "time": 30,
-    "title": "1.8.3 Ensure GDM screen lock is configured (Automated)"
   },
   {
     "description": "The autorun-never setting allows the GNOME Desktop Display Manager to disable autorun through GDM. This is important to prevent malware from executing when removable media is inserted into a system.",
@@ -496,7 +488,23 @@
     "title": "1.8.6 Ensure Xwayland is configured (Automated)"
   },
   {
-    "description": "The GNOME Display Manager (GDM) is a program that manages graphical display servers and handles graphical user logins. If a Graphical User Interface (GUI) is not required, it should be removed to reduce the attack surface of the system.",
+    "description": "Ensure that the DHCP server services are not in use to reduce the potential attack surface unless the system is specifically set up to act as a DHCP server.",
+    "id": "2_1_4",
+    "regex": "package kea is not installed",
+    "result": "fail",
+    "time": 30,
+    "title": "2.1.4 Ensure dhcp server services are not in use (Automated)"
+  },
+  {
+    "description": "Ensure that the DNS server services are not in use to reduce the potential attack surface unless the system is designated as a DNS server.",
+    "id": "2_1_5",
+    "regex": "package bind is not installed",
+    "result": "fail",
+    "time": 30,
+    "title": "2.1.5 Ensure dns server services are not in use (Automated)"
+  },
+  {
+    "description": "Ensure that the GNOME Display Manager (GDM) is not installed on the system to reduce the attack surface by removing unnecessary graphical user interfaces.",
     "id": "2_1_19",
     "regex": "^$",
     "result": "fail",
@@ -504,7 +512,31 @@
     "title": "2.1.19 Ensure GNOME Display Manager is removed (Automated)"
   },
   {
-    "description": "Ensure that the FTP client is not installed on the system to reduce the potential attack surface and enhance security.",
+    "description": "The X Window System provides a Graphical User Interface (GUI) where users can have multiple windows in which to run programs and various add on. The X Windows system is typically used on workstations where users login, but not on servers where users typically do not login. Unless your organization specifically requires graphical login access via X Windows, remove it to reduce the potential attack surface.",
+    "id": "2_1_20",
+    "regex": "package xorg-x11-server-Xwayland is not installed",
+    "result": "fail",
+    "time": 30,
+    "title": "2.1.20 Ensure X window server services are not in use"
+  },
+  {
+    "description": "Mail Transfer Agents (MTA), such as sendmail and Postfix, are used to listen for incoming mail and transfer the messages to the appropriate user or mail server. If the system is not intended to be a mail server, it is recommended that the MTA be configured to only process local mail.",
+    "id": "2_1_21",
+    "regex": "^.*not listening on any non-loopback address.*$",
+    "result": "fail",
+    "time": 30,
+    "title": "2.1.21 Ensure mail transfer agents are configured for local-only mode (Automated)"
+  },
+  {
+    "description": "Ensure that only approved services are listening on a network interface by reviewing the output of the command and taking necessary actions based on local site policy.",
+    "id": "2_1_22",
+    "regex": "^$",
+    "result": "fail",
+    "time": 60,
+    "title": "2.1.22 Ensure only approved services are listening on a network interface (Manual)"
+  },
+  {
+    "description": "FTP (File Transfer Protocol) is a traditional and widely used standard tool for transferring files between a server and clients over a network, especially where no authentication is necessary (permits anonymous users to connect to a server). It is recommended that the package be removed to reduce the potential attack surface.",
     "id": "2_2_1",
     "regex": "package ftp is not installed",
     "result": "fail",
@@ -528,7 +560,7 @@
     "title": "2.2.3 Ensure telnet client is not installed (Automated)"
   },
   {
-    "description": "Trivial File Transfer Protocol (TFTP) is a simple protocol for exchanging files between two TCP/IP machines. TFTP servers allow connections from a TFTP Client for sending and receiving files. TFTP does not have built-in encryption, access control or authentication, making it easy for an attacker to exploit TFTP to gain access to files.",
+    "description": "Ensure that the TFTP client is not installed on the system to prevent potential security vulnerabilities associated with the Trivial File Transfer Protocol.",
     "id": "2_2_4",
     "regex": "package tftp is not installed",
     "result": "fail",
@@ -544,12 +576,12 @@
     "title": "2.3.1 Ensure time synchronization is in use (Automated)"
   },
   {
-    "description": "The file /etc/sysconfig/chronyd allows configuration of options for chrony to include the user chrony is run as. By default, this is set to the user chrony. Services should not be set to run as the root user.",
-    "id": "2_3_3",
+    "description": "Ensure that the chrony service is configured to use an authorized NTP server for time synchronization, which is critical for maintaining accurate timestamps in logs and supporting security mechanisms.",
+    "id": "2_3_2",
     "regex": "^$",
     "result": "fail",
     "time": 30,
-    "title": "2.3.3 Ensure chrony is not run as the root user (Automated)"
+    "title": "2.3.2 Ensure chrony is configured (Automated)"
   },
   {
     "description": "The cron daemon is used to execute batch jobs on the system. It is essential for running maintenance jobs, including security monitoring tasks.",
@@ -572,7 +604,7 @@
     "id": "2_4_1_3",
     "regex": "Access: \\(700/drwx------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
     "result": "fail",
-    "time": 10,
+    "time": 30,
     "title": "2.4.1.3 Ensure access to /etc/cron.hourly is configured"
   },
   {
@@ -604,7 +636,7 @@
     "id": "2_4_1_7",
     "regex": "Access: \\(700/drwx------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
     "result": "fail",
-    "time": 10,
+    "time": 30,
     "title": "2.4.1.7 Ensure access to /etc/cron.yearly is configured"
   },
   {
@@ -616,12 +648,60 @@
     "title": "2.4.1.8 Ensure access to /etc/cron.d is configured (Automated)"
   },
   {
-    "description": "Configure data access control lists based on a user's need to know. Apply data access control lists, also known as access permissions, to local and remote file systems, databases, and applications.",
+    "description": "Configure data access control lists based on a user\u2019s need to know. Apply data access control lists, also known as access permissions, to local and remote file systems, databases, and applications.",
     "id": "3_3",
     "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "3.3 Configure Data Access Control Lists"
+  },
+  {
+    "description": "The net.ipv4.ip_forward flag tells the system whether it can forward IPv4 packets or not. Setting net.ipv4.ip_forward to 0 ensures that a system with multiple interfaces will not be able to forward IPv4 packets, which is important for security in non-router configurations.",
+    "id": "3_3_1_1",
+    "regex": "net\\.ipv4\\.ip_forward\\s*=\\s*0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.1 Ensure net.ipv4.ip_forward is configured (Automated)"
+  },
+  {
+    "description": "Verify that the net.ipv4.conf.all.forwarding parameter is set to 0 to ensure that the system does not forward IPv4 packets, which is unnecessary for non-router configurations.",
+    "id": "3_3_1_2",
+    "regex": "net\\.ipv4\\.conf\\.all\\.forwarding = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.2 Ensure net.ipv4.conf.all.forwarding is configured"
+  },
+  {
+    "description": "Verify that the net.ipv4.conf.default.forwarding parameter is set to 0 to ensure that the system does not forward IPv4 packets on newly added network interfaces, which is important for hosts that are not acting as routers.",
+    "id": "3_3_1_3",
+    "regex": "net.ipv4.conf.default.forwarding = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.3 Ensure net.ipv4.conf.default.forwarding is configured"
+  },
+  {
+    "description": "ICMP Redirects are used to send routing information to other hosts. As a host itself does not act as a router (in a host only configuration), there is no need to send redirects. net.ipv4.conf.all.send_redirects controls sending of all IPv4 ICMP redirected packets on all interfaces.",
+    "id": "3_3_1_4",
+    "regex": "net\\.ipv4\\.conf\\.all\\.send_redirects\\s*=\\s*0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.4 Ensure net.ipv4.conf.all.send_redirects is configured"
+  },
+  {
+    "description": "ICMP Redirects are used to send routing information to other hosts. As a host itself does not act as a router (in a host only configuration), there is no need to send redirects. This control ensures that the system does not send ICMP redirects, which could be exploited by an attacker to corrupt routing information.",
+    "id": "3_3_1_5",
+    "regex": "net.ipv4.conf.default.send_redirects = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.5 Ensure net.ipv4.conf.default.send_redirects is configured"
+  },
+  {
+    "description": "net.ipv4.icmp_ignore_bogus_error_responses controls if the kernel logs bogus responses (RFC-1122 non-compliant) from broadcast reframes. It is important to ensure this setting is configured to prevent log file system from being filled with useless error messages.",
+    "id": "3_3_1_6",
+    "regex": "net.ipv4.icmp_ignore_bogus_error_responses = 1",
+    "result": "fail",
+    "time": 30,
+    "title": "3.3.1.6 Ensure net.ipv4.icmp_ignore_bogus_error_responses is configured"
   },
   {
     "description": "net.ipv4.icmp_echo_ignore_broadcasts controls if all ICMP echo and timestamp requests to broadcast and multicast addresses are ignored.",
@@ -632,15 +712,87 @@
     "title": "3.3.1.7 Ensure net.ipv4.icmp_echo_ignore_broadcasts is configured (Automated)"
   },
   {
-    "description": "When enabled, this feature logs packets with un-routable source addresses to the kernel log. This allows an administrator to investigate the possibility that an attacker is sending spoofed packets to their system.",
-    "id": "3_3_1_17",
-    "regex": "net.ipv4.conf.default.log_martians = 1",
+    "description": "Verify that the system does not accept any IPv4 ICMP redirect messages by checking the configuration of net.ipv4.conf.all.accept_redirects.",
+    "id": "3_3_1_8",
+    "regex": "net.ipv4.conf.all.accept_redirects = 0",
     "result": "fail",
     "time": 10,
-    "title": "3.3.1.17 Ensure net.ipv4.conf.default.log_martians is configured"
+    "title": "3.3.1.8 Ensure net.ipv4.conf.all.accept_redirects is configured"
   },
   {
-    "description": "The net.ipv6.conf.default.forwarding flag tells the system whether it can forward IPv6 on the default or newly added network interface. If IPv6 has been disabled, or this system is a router, this recommendation is not applicable.",
+    "description": "Verify that the net.ipv4.conf.default.accept_redirects is set to 0 to prevent the acceptance of ICMP redirect messages, which can be used to manipulate routing tables.",
+    "id": "3_3_1_9",
+    "regex": "net.ipv4.conf.default.accept_redirects = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.9 Ensure net.ipv4.conf.default.accept_redirects is configured"
+  },
+  {
+    "description": "Secure ICMP redirects are the same as ICMP redirects, except they come from gateways listed on the default gateway list. It is assumed that these gateways are known to your system, and that they are likely to be secure. Setting net.ipv4.conf.all.secure_redirects to 0 will prevent the system from accepting any IPv4 routing table updates by possibly compromised known gateways.",
+    "id": "3_3_1_10",
+    "regex": "net.ipv4.conf.all.secure_redirects = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.10 Ensure net.ipv4.conf.all.secure_redirects is configured"
+  },
+  {
+    "description": "Secure ICMP redirects are the same as ICMP redirects, except they come from gateways listed on the default gateway list. It is assumed that these gateways are known to your system, and that they are likely to be secure. Setting net.ipv4.conf.default.secure_redirects to 0 will prevent the system from accepting IPv4 routing table updates by possibly compromised known gateways on a newly added network interface.",
+    "id": "3_3_1_11",
+    "regex": "net.ipv4.conf.default.secure_redirects = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.11 Ensure net.ipv4.conf.default.secure_redirects is configured"
+  },
+  {
+    "description": "net.ipv4.conf.all.rp_filter controls reverse path filtering for IPv4 traffic on all network interfaces. Reverse path filtering is a security mechanism in Linux that helps prevent IP spoofing and other network attacks. When enabled, it checks if the source IP address of an incoming packet is reachable through the same network interface it was received on. If the packet's source address is not reachable through the interface it arrived on, the packet is dropped.",
+    "id": "3_3_1_12",
+    "regex": "net\\.ipv4\\.conf\\.all\\.rp_filter\\s*=\\s*1",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.12 Ensure net.ipv4.conf.all.rp_filter is configured"
+  },
+  {
+    "description": "Verify net.ipv4.conf.all.accept_source_route is set to 0.",
+    "id": "3_3_1_14",
+    "regex": "^0$",
+    "result": "fail",
+    "time": 5,
+    "title": "3.3.1.14 Ensure net.ipv4.conf.all.accept_source_route is configured (Automated)"
+  },
+  {
+    "description": "Verify net.ipv4.conf.default.accept_source_route is set to 0.",
+    "id": "3_3_1_15",
+    "regex": "net.ipv4.conf.default.accept_source_route = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.15 Ensure net.ipv4.conf.default.accept_source_route is configured (Automated)"
+  },
+  {
+    "description": "When enabled, this feature logs packets with un-routable source addresses to the kernel log. This helps in investigating potential spoofed packets sent by attackers.",
+    "id": "3_3_1_16",
+    "regex": "net.ipv4.conf.all.log_martians = 1",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.16 Ensure net.ipv4.conf.all.log_martians is configured"
+  },
+  {
+    "description": "Verify net.ipv4.tcp_syncookies is set to 1 in the running configuration and in the systemd configuration file.",
+    "id": "3_3_1_18",
+    "regex": "net\\.ipv4\\.tcp_syncookies\\s*=\\s*1",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.18 Ensure net.ipv4.tcp_syncookies is configured"
+  },
+  {
+    "description": "The net.ipv6.conf.all.forwarding flag tells the system whether it can forward IPv6 packets or not. If IPv6 has been disabled, or this system is a router, this recommendation is not applicable. Setting net.ipv6.conf.all.forwarding to 0 ensures that a system with multiple interfaces will not be able to forward IPv6 packets.",
+    "id": "3_3_2_1",
+    "regex": "net.ipv6.conf.all.forwarding = 0",
+    "result": "fail",
+    "time": 30,
+    "title": "3.3.2.1 Ensure net.ipv6.conf.all.forwarding is configured"
+  },
+  {
+    "description": "The net.ipv6.conf.default.forwarding flag tells the system whether it can forward IPv6 on the default or newly added network interface. If IPv6 is enabled, it should be set to 0 to prevent unnecessary network information transmission.",
     "id": "3_3_2_2",
     "regex": "net.ipv6.conf.default.forwarding = 0",
     "result": "fail",
@@ -648,15 +800,39 @@
     "title": "3.3.2.2 Ensure net.ipv6.conf.default.forwarding is configured"
   },
   {
+    "description": "Verify that the net.ipv6.conf.all.accept_redirects is set to 0, ensuring that the system does not accept any IPv6 ICMP redirect messages, which could allow outsiders to update the system's routing tables.",
+    "id": "3_3_2_3",
+    "regex": "net.ipv6.conf.all.accept_redirects = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.2.3 Ensure net.ipv6.conf.all.accept_redirects is configured"
+  },
+  {
     "description": "Verify that the net.ipv6.conf.default.accept_redirects is set to 0, ensuring that the system does not accept IPv6 ICMP redirect messages on a newly added network interface.",
     "id": "3_3_2_4",
     "regex": "net.ipv6.conf.default.accept_redirects = 0",
     "result": "fail",
-    "time": 10,
-    "title": "3.3.2.4 Ensure net.ipv6.conf.default.accept_redirects is configured"
+    "time": 30,
+    "title": "3.3.2.4 Ensure net.ipv6.conf.default.accept_redirects is configured (Automated)"
   },
   {
-    "description": "firewalld is a high-level firewall rules management frontend utility that helps protect against threats originating from within a corporate network.",
+    "description": "Verify that the net.ipv6.conf.all.accept_ra is set to 0 to ensure that the system does not accept router advertisements, which could lead to routing traffic to compromised machines.",
+    "id": "3_3_2_7",
+    "regex": "net.ipv6.conf.all.accept_ra = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.2.7 Ensure net.ipv6.conf.all.accept_ra is configured"
+  },
+  {
+    "description": "Verify that the net.ipv6.conf.default.accept_ra is set to 0 to ensure that the system does not accept router advertisements, which could lead to routing traffic to compromised machines.",
+    "id": "3_3_2_8",
+    "regex": "net.ipv6.conf.default.accept_ra = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.2.8 Ensure net.ipv6.conf.default.accept_ra is configured"
+  },
+  {
+    "description": "Ensure that the firewalld package is installed on the system to manage firewall rules effectively.",
     "id": "4_1_1",
     "regex": "firewalld-.*",
     "result": "fail",
@@ -664,20 +840,12 @@
     "title": "4.1.1 Ensure firewalld is installed (Automated)"
   },
   {
-    "description": "The FirewallBackend option selects the firewall backend implementation, ensuring that the critical functionality of the firewall is maintained by using the recommended backend.",
+    "description": "The FirewallBackend option selects the firewall backend implementation. Verifying the proper backend configuration ensures the critical functionality of the firewall.",
     "id": "4_1_2",
     "regex": "FirewallBackend=nftables",
     "result": "fail",
     "time": 30,
     "title": "4.1.2 Ensure firewalld backend is configured (Automated)"
-  },
-  {
-    "description": "firewalld.service is a firewall service daemon that provides a dynamic, customizable firewall with a D-Bus interface. It must be active to enforce rules configured through FirewallD and enabled to start automatically after a system reboot.",
-    "id": "4_1_3",
-    "regex": "enabled",
-    "result": "fail",
-    "time": 10,
-    "title": "4.1.3 Ensure firewalld.service is configured (Automated)"
   },
   {
     "description": "Implement and manage a firewall on servers, where supported. Example implementations include a virtual firewall, operating system firewall, or a third-party firewall agent.",
@@ -696,11 +864,35 @@
     "title": "4.5 Implement and Manage a Firewall on End-User Devices"
   },
   {
+    "description": "The file /etc/ssh/sshd_config, and files ending in .conf in the /etc/ssh/sshd_config.d directory, contain configuration specifications for sshd. These specifications need to be protected from unauthorized changes by non-privileged users.",
+    "id": "5_1_1",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "5.1.1 Ensure access to /etc/ssh/sshd_config is configured"
+  },
+  {
+    "description": "Ensure that SSH private host key files are owned by the root user and have appropriate group ownership and permissions to prevent unauthorized access.",
+    "id": "5_1_2",
+    "regex": "^.*(root.*ssh_keys.*0640|root.*0600).*$",
+    "result": "fail",
+    "time": 30,
+    "title": "5.1.2 Ensure access to SSH private host key files is configured"
+  },
+  {
+    "description": "Ensure access to SSH public host key files is configured. This control verifies that SSH public host key files have the correct permissions and ownership to prevent unauthorized access, which could compromise the SSH service.",
+    "id": "5_1_3",
+    "regex": "^.*mode 0644.*$",
+    "result": "fail",
+    "time": 30,
+    "title": "5.1.3 Ensure access to SSH public host key files is configured"
+  },
+  {
     "description": "The GSSAPIAuthentication parameter specifies whether user authentication based on GSSAPI is allowed. It should be disabled to reduce the attack surface of the system.",
     "id": "5_1_9",
     "regex": "gssapiauthentication no",
     "result": "fail",
-    "time": 30,
+    "time": 10,
     "title": "5.1.9 Ensure sshd GSSAPIAuthentication is disabled (Automated)"
   },
   {
@@ -736,19 +928,155 @@
     "title": "6.3 Enable Detailed Logging"
   },
   {
-    "description": "Ensure that all systems that store logs have adequate storage space for the logs generated.",
-    "id": "6_4",
+    "description": "auditd is the userspace component to the Linux Auditing System. It's responsible for writing audit records to the disk. The capturing of system events provides system administrators with information to allow them to determine if unauthorized access to their system is occurring.",
+    "id": "6_3_1_1",
+    "regex": "auditd.*installed",
+    "result": "fail",
+    "time": 10,
+    "title": "6.3.1.1 Ensure auditd packages are installed (Automated)"
+  },
+  {
+    "description": "Configure grub2 so that processes that are capable of being audited can be audited even if they start up prior to auditd startup.",
+    "id": "6_3_1_2",
+    "regex": "audit=1",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.1.2 Ensure auditing for processes that start prior to auditd is enabled (Automated)"
+  },
+  {
+    "description": "The audit_backlog_limit parameter determines how auditd records can be held in the auditd backlog. The default setting of 64 may be insufficient to store all audit events during boot.",
+    "id": "6_3_1_3",
+    "regex": "audit_backlog_limit=\\d+",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.1.3 Ensure audit_backlog_limit is configured (Automated)"
+  },
+  {
+    "description": "Turn on the auditd daemon to record system events.",
+    "id": "6_3_1_4",
+    "regex": "enabled",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.1.4 Ensure auditd service is enabled and active (Automated)"
+  },
+  {
+    "description": "Configure the maximum size of the audit log file. Once the log reaches the maximum size, it will be rotated and a new log file will be started.",
+    "id": "6_3_2_1",
+    "regex": "max_log_file = \\d+",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.2.1 Ensure audit log storage size is configured (Automated)"
+  },
+  {
+    "description": "Ensure that actions performed as another user are always logged to maintain an audit trail of users with temporary elevated privileges.",
+    "id": "6_3_3_2",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.3.2 Ensure actions as another user are always logged"
+  },
+  {
+    "description": "Record changes to network environment files or system calls related to hostname and domain name modifications. This ensures that any unauthorized changes to the host and domain names are detected, which could affect security parameters.",
+    "id": "6_3_3_5",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.3.5 Ensure events that modify sethostname and setdomainname are collected (Automated)"
+  },
+  {
+    "description": "Record changes to network environment files or system calls. The files being monitored are: /etc/issue and /etc/issue.net - messages displayed pre-login. Monitoring /etc/issue and /etc/issue.net is important, as intruders could put disinformation into those files and trick users into providing information to the intruder.",
+    "id": "6_3_3_6",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.3.6 Ensure events that modify /etc/issue and /etc/issue.net are collected (Automated)"
+  },
+  {
+    "description": "Record changes to network environment files or system calls. The files being monitored are: /etc/hosts and /etc/hostname. This ensures that unauthorized modifications are detected, which could indicate an intruder attempting to manipulate machine associations.",
+    "id": "6_3_3_7",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.3.7 Ensure events that modify /etc/hosts and /etc/hostname are collected (Automated)"
+  },
+  {
+    "description": "Record changes to network environment files or system calls. The files being monitored are: /etc/NetworkManager/ - directory contains configuration files and settings used by the NetworkManager. Monitoring the /etc/NetworkManager/ directory will identify potential unauthorized changes to network configuration files.",
+    "id": "6_3_3_9",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.3.9 Ensure events that modify /etc/NetworkManager directory are collected (Automated)"
+  },
+  {
+    "description": "The operating system must generate audit records for successful/unsuccessful uses of the setfacl command.",
+    "id": "6_3_3_28",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.3.28 Ensure successful and unsuccessful attempts to use the setfacl command are collected (Automated)"
+  },
+  {
+    "description": "Set -c flag so that auditctl will continue loading rules in spite of an error. The exit code will not be success if any rule fails to load.",
+    "id": "6_3_3_35",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.3.35 Ensure the audit configuration is loaded regardless of errors (Automated)"
+  },
+  {
+    "description": "Set system audit so that audit rules cannot be modified with auditctl. Setting the flag \"-e 2\" forces audit to be put in immutable mode. Audit changes can only be made on system reboot.",
+    "id": "6_3_3_36",
+    "regex": "^\\h*-e\\h+2\\b",
+    "result": "fail",
+    "time": 60,
+    "title": "6.3.3.36 Ensure the audit configuration is immutable (Automated)"
+  },
+  {
+    "description": "Ensure that the running and on disk configuration of the audit system is the same to avoid discrepancies that could lead to compliance issues.",
+    "id": "6_3_3_37",
     "regex": "^$",
     "result": "fail",
     "time": 60,
-    "title": "6.4 Ensure adequate storage for logs"
+    "title": "6.3.3.37 Ensure the running and on disk configuration is the same"
+  },
+  {
+    "description": "Audit log files contain information about the system and system activity. Access to audit records can reveal system and configuration data to attackers, potentially compromising its confidentiality.",
+    "id": "6_3_4_4",
+    "regex": "log_group\\s*=\\s*(adm|root)",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.4.4 Ensure audit log files group owner is configured"
+  },
+  {
+    "description": "Audit configuration files control auditd and what events are audited. Access to the audit configuration files could allow unauthorized personnel to prevent the auditing of critical events. Misconfigured audit configuration files may prevent the auditing of critical events or impact the system's performance by overwhelming the audit log. Misconfiguration of the audit configuration files may also make it more difficult to establish and investigate events relating to an incident.",
+    "id": "6_3_4_6",
+    "regex": "^Nothing should be returned$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.4.6 Ensure audit configuration files owner is configured"
+  },
+  {
+    "description": "Audit configuration files control auditd and what events are audited. Access to the audit configuration files could allow unauthorized personnel to prevent the auditing of critical events. Misconfigured audit configuration files may prevent the auditing of critical events or impact the system's performance by overwhelming the audit log. Misconfiguration of the audit configuration files may also make it more difficult to establish and investigate events relating to an incident.",
+    "id": "6_3_4_7",
+    "regex": "^Nothing should be returned$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.4.7 Ensure audit configuration files group owner is configured"
+  },
+  {
+    "description": "Audit tools include, but are not limited to, vendor-provided and open source audit tools needed to successfully view and manipulate audit information system activity and records. Audit tools include custom queries and report generators.",
+    "id": "6_3_4_10",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3.4.10 Ensure audit tools group owner is configured"
   },
   {
     "description": "The /etc/passwd file contains user account information that is used by many system utilities and therefore must be readable for these utilities to operate. It is critical to ensure that the /etc/passwd file is protected from unauthorized write access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
     "id": "7_1_1",
     "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
     "result": "fail",
-    "time": 30,
+    "time": 10,
     "title": "7.1.1 Ensure access to /etc/passwd is configured (Automated)"
   },
   {
@@ -764,7 +1092,7 @@
     "id": "7_1_3",
     "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
     "result": "fail",
-    "time": 10,
+    "time": 30,
     "title": "7.1.3 Ensure access to /etc/group is configured (Automated)"
   },
   {
@@ -776,7 +1104,7 @@
     "title": "7.1.4 Ensure access to /etc/group- is configured (Automated)"
   },
   {
-    "description": "The /etc/shadow file is used to store the information about user accounts that is critical to the security of those accounts, such as the hashed password and other security information. It is essential to ensure that access to this file is restricted to prevent unauthorized access and potential exploitation.",
+    "description": "The /etc/shadow file is used to store the information about user accounts that is critical to the security of those accounts, such as the hashed password and other security information.",
     "id": "7_1_5",
     "regex": "^$",
     "result": "fail",
@@ -788,7 +1116,7 @@
     "id": "7_1_6",
     "regex": "Access: \\(0/----------\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
     "result": "fail",
-    "time": 10,
+    "time": 30,
     "title": "7.1.6 Ensure access to /etc/shadow- is configured (Automated)"
   },
   {
@@ -800,7 +1128,7 @@
     "title": "7.1.7 Ensure access to /etc/gshadow is configured (Automated)"
   },
   {
-    "description": "The /etc/gshadow- file is used to store backup information about groups that is critical to the security of those accounts, such as the hashed password and other security information. It is essential to ensure that this file is protected from unauthorized access, as its permissions could be altered either inadvertently or through malicious actions.",
+    "description": "The /etc/gshadow- file is used to store backup information about groups that is critical to the security of those accounts, such as the hashed password and other security information. It is essential to ensure that the /etc/gshadow- file is protected from unauthorized access, as its permissions could be altered either inadvertently or through malicious actions.",
     "id": "7_1_8",
     "regex": "Access: \\(0/----------\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
     "result": "fail",
@@ -816,12 +1144,36 @@
     "title": "7.1.9 Ensure access to /etc/shells is configured (Automated)"
   },
   {
-    "description": "/etc/security/opasswd and its backup /etc/security/opasswd.old hold user's previous passwords if pam_unix or pam_pwhistory is in use on the system. It is critical to ensure that /etc/security/opasswd is protected from unauthorized access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
+    "description": "Ensure that the access permissions for /etc/security/opasswd and its backup /etc/security/opasswd.old are set to 600 or more restrictive, with ownership by root (Uid 0 and Gid 0). This is critical to protect previous user passwords from unauthorized access.",
     "id": "7_1_10",
     "regex": "Access: \\(0600/-rw-------\\)",
     "result": "fail",
     "time": 30,
-    "title": "7.1.10 Ensure access to /etc/security/opasswd is configured (Automated)"
+    "title": "7.1.10 Ensure access to /etc/security/opasswd is configured"
+  },
+  {
+    "description": "World writable files are the least secure. Data in world-writable files can be modified and compromised by any user on the system. World writable files may also indicate an incorrectly written script or program that could potentially be the cause of a larger compromise to the system's integrity. Setting the sticky bit on world writable directories prevents users from deleting or renaming files in that directory that are not owned by them.",
+    "id": "7_1_11",
+    "regex": "^0$",
+    "result": "fail",
+    "time": 30,
+    "title": "7.1.11 Ensure world writable files and directories are secured"
+  },
+  {
+    "description": "Administrators may delete users or groups from the system and neglect to remove all files and/or directories owned by those users or groups. This control ensures that no files or directories exist without an owner and a group, preventing unauthorized access by new users or groups who may inherit those IDs.",
+    "id": "7_1_12",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "7.1.12 Ensure no files or directories without an owner and a group exist (Automated)"
+  },
+  {
+    "description": "The owner of a file can set the file's permissions to run with the owner's or group's permissions, even if the user running the program is not the owner or a member of the group. It is important to identify and review such programs to ensure they are legitimate.",
+    "id": "7_1_13",
+    "regex": "SUID|SGID",
+    "result": "fail",
+    "time": 300,
+    "title": "7.1.13 Ensure SUID and SGID files are reviewed (Manual)"
   },
   {
     "description": "Local accounts can use shadowed passwords. With shadowed passwords, the passwords are saved in shadow password file, /etc/shadow, encrypted by a salted one-way hash. Accounts with a shadowed password have an x in the second field in /etc/passwd.",
@@ -836,11 +1188,11 @@
     "id": "7_2_2",
     "regex": "^$",
     "result": "fail",
-    "time": 30,
+    "time": 10,
     "title": "7.2.2 Ensure /etc/shadow password fields are not empty"
   },
   {
-    "description": "Over time, system administration errors and changes can lead to groups being defined in /etc/passwd but not in /etc/group. Groups defined in the /etc/passwd file but not in the /etc/group file pose a threat to system security since group permissions are not properly managed.",
+    "description": "Ensure all groups defined in /etc/passwd exist in /etc/group to maintain proper group permissions and enhance system security.",
     "id": "7_2_3",
     "regex": "^$",
     "result": "fail",
@@ -852,7 +1204,7 @@
     "id": "7_2_4",
     "regex": "^$",
     "result": "fail",
-    "time": 60,
+    "time": 30,
     "title": "7.2.4 Ensure no duplicate UIDs exist (Automated)"
   },
   {
@@ -860,11 +1212,11 @@
     "id": "7_2_5",
     "regex": "^$",
     "result": "fail",
-    "time": 30,
+    "time": 60,
     "title": "7.2.5 Ensure no duplicate GIDs exist (Automated)"
   },
   {
-    "description": "Ensure that no duplicate user names exist in the system, as this can lead to security issues with shared UIDs.",
+    "description": "Ensure that no duplicate user names exist in the system, as this can lead to security issues where multiple users share the same UID, causing access control problems.",
     "id": "7_2_6",
     "regex": "^$",
     "result": "fail",
@@ -880,7 +1232,15 @@
     "title": "7.2.7 Ensure no duplicate group names exist (Automated)"
   },
   {
-    "description": "Ensure that local interactive user dot files have secure permissions to prevent unauthorized access and modifications by malicious users.",
+    "description": "Ensure local interactive user home directories are configured to prevent unauthorized access and ensure proper ownership and permissions.",
+    "id": "7_2_8",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "7.2.8 Ensure local interactive user home directories are configured (Automated)"
+  },
+  {
+    "description": "Ensure that local interactive user dot files are configured with secure permissions to prevent unauthorized access and modifications by malicious users.",
     "id": "7_2_9",
     "regex": "0644|0600",
     "result": "fail",

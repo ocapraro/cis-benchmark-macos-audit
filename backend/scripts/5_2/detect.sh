@@ -1,1 +1,1 @@
-grep -E 'unique password' /path/to/passwords | wc -l | grep -q '[1-9]'
+grep -E 'unique passwords' /path/to/audit/output || exit 1

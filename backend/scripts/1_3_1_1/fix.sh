@@ -1,1 +1,1 @@
-dnf install -y libselinux; exit 0
+dnf install -y libselinux

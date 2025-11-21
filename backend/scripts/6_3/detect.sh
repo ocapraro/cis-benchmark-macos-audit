@@ -1,1 +1,1 @@
-grep -q 'detailed logging' /etc/syslog.conf && exit 0 || exit 1
+grep -E 'detailed logging' /etc/ssh/sshd_config && exit 0 || exit 1

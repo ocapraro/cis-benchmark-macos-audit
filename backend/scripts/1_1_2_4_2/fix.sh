@@ -1,1 +1,1 @@
-sed -i 's|<device> /var    <fstype>     defaults,rw,nosuid|<device> /var    <fstype>     defaults,rw,nosuid,nodev|' /etc/fstab && mount -o remount /var
+sed -i 's/\(<device> /var\s\+<fstype>\s\+defaults\)/\1,nodev/' /etc/fstab && mount -o remount /var

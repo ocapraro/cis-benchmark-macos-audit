@@ -1,1 +1,1 @@
-findmnt -kn /home | grep -v nosuid || exit 0; exit 1
+findmnt -kn /home | grep -v nosuid; if [ $? -eq 0 ]; then exit 1; else exit 0; fi

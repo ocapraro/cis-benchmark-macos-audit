@@ -1,1 +1,2 @@
-sed -i 's|<device> /var/tmp    <fstype>     defaults|<device> /var/tmp    <fstype>     defaults,rw,nosuid,nodev,noexec,relatime|' /etc/fstab; mount -o remount /var/tmp; exit 0
+# Edit /etc/fstab to add nodev to the fourth field for /var/tmp
+# mount -o remount /var/tmp

@@ -1,1 +1,1 @@
-findmnt -kn /tmp | grep -v nodev; if [ $? -eq 0 ]; then exit 1; else exit 0; fi
+findmnt -kn /tmp | grep -v nodev || exit 1

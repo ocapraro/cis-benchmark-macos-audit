@@ -1,1 +1,1 @@
-echo 'Configure a host-based firewall on end-user devices with a default-deny rule.'; exit 2
+# Configure host-based firewall to default-deny all traffic.

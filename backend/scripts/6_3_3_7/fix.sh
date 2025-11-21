@@ -1,0 +1,1 @@
+echo '-a always,exit -F path=/etc/hosts -F perm=wa' >> /etc/audit/rules.d/audit.rules && echo '-a always,exit -F path=/etc/hostname -F perm=wa' >> /etc/audit/rules.d/audit.rules && service auditd restart

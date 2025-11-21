@@ -1,1 +1,1 @@
-echo 'Ensure all accounts have unique passwords as per the guidelines.'; exit 2
+echo 'Ensure unique passwords are set for all accounts as per the guidelines.'; exit 2

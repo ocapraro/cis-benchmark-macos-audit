@@ -1,1 +1,1 @@
-findmnt -kn /dev/shm | grep -v 'nodev' || exit 1
+findmnt -kn /dev/shm | grep -v 'nodev' || exit 0; exit 1

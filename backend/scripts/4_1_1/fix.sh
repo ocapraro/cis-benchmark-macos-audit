@@ -1,1 +1,1 @@
-dnf install firewalld -y; exit 0
+dnf install -y firewalld

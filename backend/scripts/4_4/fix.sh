@@ -1,1 +1,1 @@
-echo 'Implement a firewall on the server as per the guidelines.'; exit 2
+systemctl unmask firewalld.service && systemctl --now enable firewalld.service

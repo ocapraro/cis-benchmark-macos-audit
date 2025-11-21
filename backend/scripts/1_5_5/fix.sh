@@ -1,1 +1,1 @@
-sysctl -w kernel.dmesg_restrict=1
+sysctl -w kernel.dmesg_restrict=1; echo 'kernel.dmesg_restrict=1' >> /etc/sysctl.conf; sysctl -p
