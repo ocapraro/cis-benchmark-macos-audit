@@ -1,5 +1,5 @@
 window.onload = ()=>{
-  fetch('http://localhost:3000')
+  fetch(API_BASE_URL)
     .then(response => response.json())
     .then(data => {
       let [successes, fails, errors] = [0,0,0];
@@ -52,13 +52,13 @@ window.onload = ()=>{
             </div>
             `;
             expand.querySelector('.rerun-btn').onclick = () => {
-            fetch(`http://localhost:3000/run/${e.id}`, {
+            fetch(`${API_BASE_URL}/run/${e.id}`, {
               method: 'POST'
             })
             .then(res => window.location.reload());
             };
             expand.querySelector('.fix-btn').onclick = () => {
-            fetch(`http://localhost:3000/fix/${e.id}`, {
+            fetch(`${API_BASE_URL}/fix/${e.id}`, {
               method: 'POST'
             })
             .then(res => window.location.reload());
