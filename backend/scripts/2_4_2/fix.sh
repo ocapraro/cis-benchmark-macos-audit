@@ -1,1 +1,0 @@
-/usr/bin/sudo /usr/sbin/sysadminctl -screenLock immediate -password "<administrator password>"

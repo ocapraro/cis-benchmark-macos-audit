@@ -1,0 +1,1 @@
+chmod 600 /etc/security/opasswd; chown root:root /etc/security/opasswd; chmod 600 /etc/security/opasswd.old; chown root:root /etc/security/opasswd.old; echo 'Permissions and ownership set to 600 and root:root for both files.'

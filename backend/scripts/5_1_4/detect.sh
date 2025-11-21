@@ -1,1 +1,0 @@
-/usr/bin/sudo /usr/bin/find /System/Volumes/Data/Applications -iname "*\.app" -type d -perm -2 -ls | grep -v Xcode.app | /usr/bin/wc -l | /usr/bin/xargs

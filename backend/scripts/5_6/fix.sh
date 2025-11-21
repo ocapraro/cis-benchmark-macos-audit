@@ -1,1 +1,0 @@
-/usr/bin/sudo /usr/bin/security authorizationdb write system.login.screensaver authenticate-session-owner

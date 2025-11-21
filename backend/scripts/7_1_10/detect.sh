@@ -1,0 +1,1 @@
+[ -e "/etc/security/opasswd" ] && stat -Lc '%n Access: (%#a/%A)  Uid: (%u/%U) Gid: (%g/%G)' /etc/security/opasswd || echo 'Not found'; [ -e "/etc/security/opasswd.old" ] && stat -Lc '%n Access: (%#a/%A)  Uid: (%u/%U) Gid: (%g/%G)' /etc/security/opasswd.old || echo 'Not found'

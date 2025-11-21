@@ -1,1 +1,0 @@
-/usr/bin/sudo /usr/bin/dscl . -list /Users hint . -delete /Users/ocapraro hint

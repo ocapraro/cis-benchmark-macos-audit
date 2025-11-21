@@ -1,1 +1,0 @@
-sudo pwpolicy -n /Local/Default -setglobalpolicy "requiresSymbol=1"

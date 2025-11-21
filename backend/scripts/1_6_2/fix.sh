@@ -1,0 +1,1 @@
+sed -i '/^\s*hash\s*=/s/SHA1//g' /etc/crypto-policies/state/CURRENT.pol; sed -i '/^\s*sign\s*=/s/SHA1//g' /etc/crypto-policies/state/CURRENT.pol; echo 'sha1_in_certs = 0' >> /etc/crypto-policies/state/CURRENT.pol; exit 0

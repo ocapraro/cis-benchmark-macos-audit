@@ -1,1 +1,0 @@
-/usr/bin/sudo /bin/launchctl list | /usr/bin/grep -i auditd

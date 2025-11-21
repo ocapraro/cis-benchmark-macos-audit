@@ -1,1 +1,1 @@
-/usr/bin/sudo /usr/bin/grep -i ttl /etc/asl/com.apple.install
+grep -q 'access control lists' /path/to/configuration && exit 0 || exit 1

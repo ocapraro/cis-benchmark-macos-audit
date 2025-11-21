@@ -1,0 +1,1 @@
+sysctl net.ipv4.conf.default.log_martians | grep 'net.ipv4.conf.default.log_martians = 1'

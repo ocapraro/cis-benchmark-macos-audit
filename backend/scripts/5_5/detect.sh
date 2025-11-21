@@ -1,1 +1,0 @@
-/usr/bin/sudo /usr/bin/dscl . -read /Users/root AuthenticationAuthority 2>&1 || true

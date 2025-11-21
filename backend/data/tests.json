@@ -1,1 +1,890 @@
-[{"description":"Software vendors release security patches and software updates for their products\nwhen security vulnerabilities are discovered. There is no simple way to complete this\naction without a network connection to an Apple software repository. Please ensure\nappropriate access for this control. This check is only for what Apple provides through\nsoftware update.\nSoftware updates should be run at minimum every 30 days. Run the following command\nto verify when software update was previously run:\n$ /usr/bin/sudo defaults read\n/Library/Preferences/com.apple.SoftwareUpdate | grep -e\nLastFullSuccessfulDate.\nThe response should be in the last 30 days (Example): LastFullSuccessfulDate =\n\"2020-07-30 12:45:25 +0000\";","id":"1_1","regex":"No new software available","result":"fail","time":5829,"title":"1.1 Ensure All Apple-provided Software Is Current (Automated)"},{"description":"Auto Update verifies that your system has the newest security patches and software\nupdates. If \"Automatically check for updates\" is not selected, background updates for\nnew malware definition files from Apple for XProtect and Gatekeeper will not occur.\nhttp://macops.ca/os-x-admins-your-clients-are-not-getting-background-security-updates/\nhttps://derflounder.wordpress.com/2014/12/17/forcing-xprotect-blacklist-updates-on-\nmavericks-and-yosemite/","id":"1_2","regex":"true","result":"fail","time":42,"title":"1.2 Ensure Auto Update Is Enabled (Automated)"},{"description":"In the GUI, both \"Install macOS updates\" and \"Install app updates from the App Store\" are dependent on whether \"Download new updates when available\" is selected.","id":"1_3","regex":"true","result":"success","time":28,"title":"1.3 Ensure Download New Updates When Available Is Enabled (Automated)"},{"description":"Ensure that macOS updates are installed after they are available from Apple. This setting enables macOS updates to be automatically installed. Some environments will want to approve and test updates before they are delivered. It is best practice to test first where updates can and have caused disruptions to operations. Automatic updates should be turned off where changes are tightly controlled and there are mature testing and approval processes. Automatic updates should not be turned off simply to allow the administrator to contact users in order to verify installation. A dependable, repeatable process involving a patch agent or remote management tool should be in place before auto-updates are turned off.","id":"1_4","regex":"true","result":"success","time":28,"title":"1.4 Ensure Install of macOS Updates Is Enabled (Automated)"},{"description":"Ensure that application updates are installed after they are available from Apple. These updates do not require reboots or administrator privileges for end users.","id":"1_5","regex":"true","result":"success","time":29,"title":"1.5 Ensure Install Application Updates from the App Store Is Enabled (Automated)"},{"description":"Ensure that system and security updates are installed after they are available from Apple. This setting enables definition updates for XProtect and Gatekeeper. With this setting in place, new malware and adware that Apple has added to the list of malware or untrusted software will not execute. These updates do not require reboots or end user admin rights. Apple has introduced a security feature that allows for smaller downloads and the installation of security updates when a reboot is not required. This feature is only available when the last regular update has already been applied. This feature emphasizes that a Mac must be up-to-date on patches so that Apple's security tools can be used to quickly patch when a rapid response is necessary.","id":"1_6","regex":"true","result":"success","time":30,"title":"1.6 Ensure Install Security Responses and System Files Is Enabled (Automated)"},{"description":"A firewall is a piece of software that blocks unwanted incoming connections to a system.","id":"2_1_1","regex":"true","result":"success","time":28,"title":"2.1.1 Ensure Firewall Is Enabled (Automated)"},{"description":"While in Stealth mode, the computer will not respond to unsolicited probes, dropping that traffic.","id":"2_1_2","regex":"Firewall stealth mode is on","result":"success","time":8,"title":"2.1.2 Ensure Firewall Stealth Mode Is Enabled (Automated)"},{"description":"Correct date and time settings are required for authentication protocols, file creation, modification dates, and log entries.\n\nNote: If your organization has internal time servers, enter them here. Enterprise mobile devices may need to use a mix of internal and external time servers. If multiple servers are required, use the Date & Time System Preference with each server separated by a space. \n\nAdditional Note: The default Apple time server is time.apple.com. Variations include time.euro.apple.com. While it is certainly more efficient to use internal time servers, there is no reason to block access to global Apple time servers or to add a time.apple.com alias to internal DNS records. There are no reports that Apple gathers any information from NTP synchronization, as the computers already phone home to Apple for Apple services including iCloud use and software updates. Best practice is to allow DNS resolution to an authoritative time service for time.apple.com, preferably to connect to Apple servers, but local servers are acceptable as well.","id":"2_2_1_1","regex":"On","result":"fail","time":51,"title":"2.2.1.1 Ensure Set Time and Date Automatically Is Enabled (Automated)"},{"description":"In macOS 10.14, Apple replace ntp with timed for time services, and is used to ensure correct time is kept. Correct date and time settings are required for authentication protocols, file creation, modification dates, and log entries.","id":"2_2_1_2","regex":"1","result":"success","time":16,"title":"2.2.1.2 Ensure the Time Service Is Enabled (Automated)"},{"description":"Apple Events is a technology that allows one program to communicate with other programs. Remote Apple Events allows a program on one computer to communicate with a program on a different computer.","id":"2_2_2_1","regex":"Remote Apple Events: Off","result":"success","time":21,"title":"2.2.2.1 Ensure Remote Apple Events Is Disabled (Automated)"},{"description":"Starting with 10.13 (macOS High Sierra), Apple introduced a service to make it easier to deploy data from Apple, including software updates, where there are bandwidth constraints to the Internet and fewer constraints or greater bandwidth exist on the local subnet. This capability can be very valuable for organizations that have throttled and possibly metered Internet connections. In heterogeneous enterprise networks with multiple subnets, the effectiveness of this capability would be determined by how many Macs were on each subnet at the time new, large updates were made available upstream. This capability requires the use of mac OS clients as P2P nodes for updated Apple content. Unless there is a business requirement to manage operational Internet connectivity and bandwidth, user endpoints should not store content and act as a cluster to provision data.","id":"2_2_2_2","regex":"false","result":"success","time":27,"title":"2.2.2.2 Ensure Content Caching Is Disabled (Automated)"},{"description":"Apple provides a mechanism to send diagnostic and analytics data back to Apple to help them improve the platform. Information sent to Apple may contain internal organizational information that should be controlled and not available for processing by Apple. Turn off all Analytics and Improvements sharing.","id":"2_3_1","regex":"0\n0\n2","result":"success","time":49,"title":"2.3.1 Ensure Sending Diagnostic and Usage Data to Apple Is Disabled (Automated)"},{"description":"Apple provides a framework that allows advertisers to target Apple users and end-users with advertisements. While many people prefer to see advertising that is relevant to them and their interests, the detailed information that is collected, correlated, and available to advertisers in repositories via data mining is often disconcerting. This information is valuable to both advertisers and attackers, and has been used with other metadata to reveal users' identities.","id":"2_3_2","regex":"0","result":"success","time":16,"title":"2.3.2 Ensure Limit Ad Tracking Is Enabled (Automated)"},{"description":"Gatekeeper is Apple's application that utilizes allowlisting to restrict downloaded applications from launching. It functions as a control to limit applications from unverified sources from running without authorization. In an update to Gatekeeper in macOS 13 Ventura, Gatekeeper checks every application on every launch, not just quarantined apps.","id":"2_3_3","regex":"assessments enabled","result":"success","time":14,"title":"2.3.3 Ensure Gatekeeper Is Enabled (Automated)"},{"description":"A locking screen saver is one of the standard security controls to limit access to a computer and the current user's session when the computer is temporarily unused or unattended. In macOS, the screen saver starts after a value is selected in the drop- down menu. 20 minutes or less is an acceptable value. Any value can be selected through the command line or script, but a number that is not reflected in the GUI can be problematic. 20 minutes is the default for new accounts.","id":"2_4_1","regex":"^Checking User: '/Users/[^']+': (?:[0-9]{1,3}|1[01][0-9]{2}|1200)$","result":"success","time":21,"title":"2.4.1 Ensure an Inactivity Interval of 20 Minutes Or Less for the Screen Saver Is Enabled (Automated)"},{"description":"Sleep and screen saver modes are low power modes that reduce electrical consumption while the system is not in use.","id":"2_4_2","regex":"screenLock delay is (?:immediate|[1-5] seconds?)","result":"fail","time":21,"title":"2.4.2 Ensure Require Password After Screen Saver Begins or Display Is Turned Off Is Enabled for 5 Seconds or Immediately (Automated)"},{"description":"An access warning informs the user that the system is reserved for authorized use only, and that the use of the system may be monitored.","id":"2_4_3","regex":".+","result":"success","time":26,"title":"2.4.3 Ensure a Custom Message for the Login Screen Is Enabled (Automated)"},{"description":"The login window prompts a user for his/her credentials, verifies their authorization level, and then allows or denies the user access to the system.","id":"2_4_4","regex":"true","result":"success","time":26,"title":"2.4.4 Ensure Login Window Displays as Name and Password Is Enabled (Automated)"},{"description":"Password hints are user-created text displayed when an incorrect password is used for an account.","id":"2_4_5","regex":"0","result":"success","time":26,"title":"2.4.5 Ensure Show Password Hints Is Disabled (Automated)"},{"description":"Password hints help the user recall their passwords for various systems and/or accounts. In most cases, password hints are simple and closely related to the user's password.","id":"2_5_1","regex":"^[^\\s]*$","result":"success","time":34,"title":"2.5.1 Ensure Users' Accounts Do Not Have a Password Hint (Automated)"},{"description":"The guest account allows users access to the system without having to create an account or password. Guest users are unable to make setting changes and cannot remotely login to the system. All files, caches, and passwords created by the guest user are deleted upon logging out.","id":"2_6_1","regex":"false","result":"success","time":26,"title":"2.6.1 Ensure Guest Account Is Disabled (Automated)"},{"description":"Allowing guests to connect to shared folders enables users to access selected shared folders and their contents from different computers on a network.","id":"2_6_2","regex":"SMB guest access disabled","result":"fail","time":17,"title":"2.6.2 Ensure Guest Access to Shared Folders Is Disabled (Automated)"},{"description":"The automatic login feature saves a user's system access credentials and bypasses the login screen. Instead, the system automatically loads to the user's desktop screen.","id":"2_6_3","regex":"true","result":"success","time":25,"title":"2.6.3 Ensure Automatic Login Is Disabled (Automated)"},{"description":"macOS's audit facility, auditd, receives notifications from the kernel when certain system calls, such as open, fork, and exit, are made. These notifications are captured and written to an audit log. \n\nApple has deprecated auditd as of macOS 11.0 Big Sur. In macOS 14.0 Sonoma it is no longer enabled by default and it is suggested to use an application that integrates with the EndpointSecurity API. These applications are 3rd party and not built into the macOS. Until auditd is removed from macOS completely, running the binary is the best way to collect logging in macOS and the only one that is part of the OS.","id":"3_1","regex":"com\\.apple\\.auditd","result":"success","time":15,"title":"3.1 Ensure Security Auditing Is Enabled (Automated)"},{"description":"Auditing is the capture and maintenance of information about security-related events. Auditable events often depend on differing organizational requirements.","id":"3_2","regex":"flags:ad,aa,lo,\\-all","result":"success","time":13,"title":"3.2 Ensure Security Auditing Flags For User-Attributable Events Are Configured Per Local Organizational Requirements (Automated)"},{"description":"macOS writes information pertaining to system-related events to the file /var/log/install.log and has a configurable retention policy for this file. The default logging setting limits the file size of the logs and the maximum size for all logs. The default allows for an errant application to fill the log files and does not enforce sufficient log retention. The Benchmark recommends a value based on standard use cases. The value should align with local requirements within the organization. \n\nThe default value has an \"all_max\" file limitation, no reference to a minimum retention, and a less precise rotation argument. \n\nThe all_max flag control will remove old log entries based only on the size of the log files. Log size can vary widely depending on how verbose installing applications are in their log entries. The decision here is to ensure that logs go back a year, and depending on the applications a size restriction could compromise the ability to store a full year. \n\nWhile this Benchmark is not scoring for a rotation flag, the default rotation is sequential rather than using a timestamp. Auditors may prefer timestamps in order to simply review specific dates where event information is desired.","id":"3_3","regex":"ttl=(?:36[5-9]|3[7-9]\\d|[4-9]\\d{2,}|[1-9]\\d{3,})","result":"success","time":13,"title":"3.3 Ensure install.log Is Retained for 365 or More Days and No Maximum Size (Automated)"},{"description":"The macOS audit capability contains important information to investigate security or operational issues. This resource is only completely useful if it is retained long enough to allow technical staff to find the root cause of anomalies in the records. \n\nRetention can be set to respect both size and longevity. To retain as much as possible under a certain size, the recommendation is to use the following: \n\nexpire-after:60d OR 5G \n\nThis recomendation is based on minimum storage for review and investigation. When a third party tool is in use to allow remote logging or the store and forwarding of logs, this local storage requirement is not required.","id":"3_4","regex":"expire-after:\\s*(?:[6-9]\\d{1,}d|[1-9]\\d{3,}d|5G)","result":"fail","time":12,"title":"3.4 Ensure Security Auditing Retention Is Enabled (Automated)"},{"description":"The audit system on macOS writes important operational and security information that can be both useful for an attacker and a place for an attacker to attempt to obfuscate unwanted changes that were recorded. As part of defense-in-depth, the /etc/security/audit_control configuration and the files in /var/audit should be owned only by root with group wheel with read-only rights and no other access allowed. macOS ACLs should not be used for these files. \n\nThe default folder for storing logs is /var/audit, but it can be changed. This recommendation will ensure that any target directory has appropriate access control in place even if the target directory is not the default of /var/audit.","id":"3_5","regex":".*","result":"success","time":147,"title":"3.5 Ensure Access to Audit Records Is Controlled (Automated)"},{"description":"The socketfilter Firewall is what is used when the Firewall is turned on in the Security & Privacy Preference Pane. In order to appropriately monitor what access is allowed and denied, logging must be enabled. The logging level must be set to \"detailed\" to be useful in monitoring connection attempts that the firewall detects. Throttled login is not sufficient for examining Firewall connection attempts. \n\nIn-depth log monitoring on macOS may require changes to the \"Enable-Private-Data\" key in SystemLogging.System to ensure more complete logging.","id":"3_6","regex":"true","result":"fail","time":25,"title":"3.6 Ensure Firewall Logging Is Enabled and Configured (Automated)"},{"description":"Bonjour is an auto-discovery mechanism for TCP/IP devices which enumerates devices and services within a local subnet. DNS on macOS is integrated with Bonjour and should not be turned off, but the Bonjour advertising service can be disabled.","id":"4_1","regex":"true","result":"success","time":27,"title":"4.1 Ensure Bonjour Advertising Services Is Disabled (Automated)"},{"description":"macOS used to have a graphical front-end to the embedded Apache web server in the Operating System. Personal web sharing could be enabled to allow someone on another computer to download files or information from the user's computer. Personal web sharing from a user endpoint has long been considered questionable, and Apple has removed that capability from the GUI. Apache, however, is still part of the Operating System and can be easily turned on to share files and provide remote connectivity to an end-user computer. Web sharing should only be done through hardened web servers and appropriate cloud services.","id":"4_2","regex":"0","result":"success","time":15,"title":"4.2 Ensure HTTP Server Is Disabled (Automated)"},{"description":"macOS can act as an NFS fileserver. NFS sharing could be enabled to allow someone on another computer to mount shares and gain access to information from the user's computer. File sharing from a user endpoint has long been considered questionable, and Apple has removed that capability from the GUI. NFSD is still part of the Operating System and can be easily turned on to export shares and provide remote connectivity to an end-user computer. \n\nThe etc/exports file contains the list of NFS shared directories. If the file exists, it is likely that NFS sharing has been enabled in the past or may be available periodically. As an additional check, the audit verifies that there is no /etc/exports file.","id":"4_3","regex":"0.*No Such File","result":"fail","time":25,"title":"4.3 Ensure NFS Server Is Disabled (Automated)"},{"description":"By default, macOS allows all valid users into the top level of every other user's home folder and restricts access to the Apple default folders within. Another user on the same system can see you have a \"Documents\" folder but cannot see inside it. This configuration does work for personal file sharing but can expose user files to standard accounts on the system. \n\nThe best parallel for Enterprise environments is that everyone who has a Dropbox account can see everything that is at the top level but can't see your pictures. Similarly with macOS, users can see into every new Directory that is created because of the default permissions. \n\nHome folders should be restricted to access only by the user. Sharing should be used on dedicated servers or cloud instances that are managing access controls. Some environments may encounter problems if execute rights are removed as well as read and write. Either no access or execute only for group or others is acceptable.","id":"5_1_1","regex":"^$","result":"success","time":13,"title":"5.1.1 Ensure Home Folders Are Secure (Automated)"},{"description":"Apple Mobile File Integrity (AMFI) was first released in macOS 10.12. The daemon and service block attempts to run unsigned code. AMFI uses launchd, code signatures, certificates, entitlements, and provisioning profiles to create a filtered entitlement dictionary for an app. AMFI is the macOS kernel module that enforces code-signing and library validation.","id":"5_1_2","regex":"0","result":"success","time":15,"title":"5.1.2 Ensure Apple Mobile File Integrity (AMFI) Is Enabled (Automated)"},{"description":"Signed System Volume is a security feature introduced in macOS 11.0 Big Sur.\n\nDuring system installation, a SHA-256 cryptographic hash is calculated for all immutable system files and stored in a Merkle tree which itself is hashed as the Seal. Both are stored in the metadata of the snapshot created of the System volume. \n\nThe seal is verified by the boot loader at startup. macOS will not boot if system files have been tampered with. If validation fails, the user will be instructed to reinstall the operating system. \n\nDuring read operations for files located in the Signed System Volume, a hash is calculated and compared to the value stored in the Merkle tree.\n\nIf SSV has been disabled, assume that the operating system has been compromised. Back up any files, and do a clean install to a known good Operating System.","id":"5_1_3","regex":"Authenticated Root status: enabled","result":"success","time":91,"title":"5.1.3 Ensure Signed System Volume (SSV) Is Enabled (Automated)"},{"description":"Applications in the System Applications Directory (/Applications) should be world- executable since that is their reason to be on the system. They should not be world- writable and allow any process or user to alter them for other processes or users to then execute modified versions.","id":"5_1_4","regex":"0","result":"success","time":1677,"title":"5.1.4 Ensure Appropriate Permissions Are Enabled for System Wide Applications (Automated)"},{"description":"Software sometimes insists on being installed in the /System/Volumes/Data/System Directory and has inappropriate world-writable permissions. \n\nMacs with writable files in System should be investigated forensically. A file with open writable permissions is a sign of at best a rogue application. It could also be a sign of a computer compromise and a persistent presence on the system.","id":"5_1_5","regex":"0","result":"success","time":947,"title":"5.1.5 Ensure No World Writable Folders Exist in the System Folder (Automated)"},{"description":"Software sometimes insists on being installed in the /System/Volumes/Data/Library Directory and has inappropriate world-writable permissions.","id":"5_1_6","regex":"0","result":"fail","time":3638,"title":"5.1.6 Ensure No World Writable Folders Exist in the Library Folder (Automated)"},{"description":"The account lockout threshold specifies the amount of times a user can enter an incorrect password before a lockout will occur. \n\nEnsure that a lockout threshold is part of the password policy on the computer.","id":"5_2_1","regex":"^[12345]$","result":"success","time":19,"title":"5.2.1 Ensure Password Account Lockout Threshold Is Configured (Automated)"},{"description":"A minimum password length is the fewest number of characters a password can contain to meet a system's requirements. \n\nEnsure that a minimum of a 15-character password is part of the password policy on the computer. \n\nWhere the confidentiality of encrypted information in FileVault is more of a concern, requiring a longer password or passphrase may be sufficient rather than imposing additional complexity requirements that may be self-defeating.","id":"5_2_2","regex":"^(?:1[5-9]|[2-9]\\d+)$","result":"fail","time":17,"title":"5.2.2 Ensure Password Minimum Length Is Configured (Automated)"},{"description":"Complex passwords contain one character from each of the following classes: English uppercase letters, English lowercase letters, Westernized Arabic numerals, and non- alphanumeric characters. \n\nEnsure that an Alphabetic character is part of the password policy on the computer.","id":"5_2_3","regex":"true","result":"success","time":22,"title":"5.2.3 Ensure Complex Password Must Contain Alphabetic Characters Is Configured (Automated)"},{"description":"Complex passwords contain one character from each of the following classes: English uppercase letters, English lowercase letters, Westernized Arabic numerals, and non-alphanumeric characters. \n\nEnsure that a number or numeric value is part of the password policy on the computer.","id":"5_2_4","regex":"true","result":"success","time":21,"title":"5.2.4 Ensure Complex Password Must Contain Numeric Character Is Configured (Automated)"},{"description":"Complex passwords contain one character from each of the following classes: English uppercase letters, English lowercase letters, Westernized Arabic numerals, and non- alphanumeric characters. Ensure that a special character is part of the password policy on the computer.","id":"5_2_5","regex":"true","result":"fail","time":21,"title":"5.2.5 Ensure Complex Password Must Contain Special Character Is Configured (Automated)"},{"description":"Complex passwords contain one character from each of the following classes: English uppercase letters, English lowercase letters, Westernized Arabic numerals, and non-alphanumeric characters. \n\nEnsure that both uppercase and lowercase letters are part of the password policy on the computer.","id":"5_2_6","regex":"true","result":"success","time":17,"title":"5.2.6 Ensure Complex Password Must Contain Uppercase and Lowercase Characters Is Configured (Automated)"},{"description":"Over time, passwords can be captured by third parties through mistakes, phishing attacks, third-party breaches, or merely brute-force attacks. To reduce the risk of exposure and to decrease the incentives of password reuse (passwords that are not forced to be changed periodically generally are not ever changed), users should reset passwords periodically. This control uses 365 days as the acceptable value. Some organizations may be more or less restrictive. This control mainly exists to mitigate against password reuse of the macOS account password in other realms that may be more prone to compromise. Attackers take advantage of exposed information to attack other accounts.","id":"5_2_7","regex":"true","result":"fail","time":16,"title":"5.2.7 Ensure Password Age Is Configured (Automated)"},{"description":"Over time, passwords can be captured by third parties through mistakes, phishing attacks, third-party breaches, or merely brute-force attacks. To reduce the risk of exposure and to decrease the incentives of password reuse (passwords that are not forced to be changed periodically generally are not ever changed), users must reset passwords periodically. This control ensures that previous passwords are not reused immediately by keeping a history of previous password hashes. Ensure that password history checks are part of the password policy on the computer. This control checks whether a new password is different than the previous 15. The latest NIST guidance based on exploit research referenced in this section details how one of the greatest risks is password exposure rather than password cracking. Passwords should be changed to a new unique value whenever a password might have been exposed to anyone other than the account holder. Attackers have maintained persistent control based on predictable password change patterns and substantially different patterns should be used in case of a leak.","id":"5_2_8","regex":"true","result":"fail","time":16,"title":"5.2.8 Ensure Password History Is Configured (Automated)"},{"description":"The sudo command allows the user to run programs as the root user. Working as the root user allows the user an extremely high level of configurability within the system. This control, along with the control to use a separate timestamp for each tty, limits the window where an unauthorized user, process, or attacker could utilize legitimate credentials that are valid for longer than required.","id":"5_3","regex":"1","result":"fail","time":15,"title":"5.3 Ensure the Sudo Timeout Period Is Set to Zero (Automated)"},{"description":"Using tty tickets ensures that a user must enter the sudo password in each Terminal session. \n\nWith sudo versions 1.8 and higher, introduced in 10.12, the default value is to have tty tickets for each interface so that root access is limited to a specific terminal. The default configuration can be overwritten or not configured correctly on earlier versions of macOS.","id":"5_4","regex":"1","result":"success","time":16,"title":"5.4 Ensure a Separate Timestamp Is Enabled for Each User/tty Combo (Automated)"},{"description":"The root account is a superuser account that has access privileges to perform any actions and read/write to any file on the computer. With some versions of Linux, the system administrator may commonly use the root account to perform administrative functions.","id":"5_5","regex":"No such key: AuthenticationAuthority","result":"success","time":19,"title":"5.5 Ensure the \"root\" Account Is Disabled (Automated)"},{"description":"macOS has a privilege that can be granted to any user that will allow that user to unlock active users' sessions.","id":"5_6","regex":"1","result":"success","time":20,"title":"5.6 Ensure an Administrator Account Cannot Login to Another User's Active and Locked Session (Automated)"},{"description":"A Login window banner warning informs the user that the system is reserved for authorized use only. It enforces an acknowledgment by the user that they have been informed of the use policy in the banner if required. The system recognizes either the .txt and the .rtf formats","id":"5_7","regex":"^(?!.*no matches found).+$","result":"success","time":13,"title":"5.7 Ensure a Login Window Banner Exists (Automated)"},{"description":"In the previous two controls, the guest account login has been disabled and sharing to guests has been disabled, as well. There is no need for the legacy Guest home folder to remain in the file system. When normal user accounts are removed, you have the option to archive it, leave it in place, or delete. In the case of the guest folder, the folder remains in place without a GUI option to remove it. If at some point in the future a Guest account is needed, it will be re-created. The presence of the Guest home folder can cause automated audits to fail when looking for compliant settings within all User folders, as well. Rather than ignoring the folder's continued existence, it is best removed.","id":"5_8","regex":"^$","result":"success","time":13,"title":"5.8 Ensure the Guest Home Folder Does Not Exist (Automated)"},{"description":"XProtect is Apple's native signature-based antivirus technology. XProtect both finds and blocks the execution of known malware. There are many AV and Endpoint Threat Detection and Response (ETDR) tools available for Mac OS. The native Apple provisioned tool looks for specific known malware and is completely integrated into the OS. No matter what other tools are being used, XProtect should have the latest signatures available.","id":"5_9","regex":"^XProtect launch scans:\\s*enabled\\s*\\nXProtect background scans:\\s*enabled\\s*$","result":"success","time":15,"title":"5.9 Ensure XProtect Is Running and Updated (Automated)"},{"description":"Secure Keyboard Entry prevents other applications on the system and/or network from detecting and recording what is typed into Terminal. Unauthorized applications and malicious code could intercept keystrokes entered in the Terminal.","id":"5_10","regex":"$[^0]+$","result":"success","time":16,"title":"5.10 Ensure Secure Keyboard Entry Terminal.app Is Enabled (Automated)"},{"description":"A filename extension is a suffix added to a base filename that indicates the base filename's file format.","id":"5_11","regex":"1","result":"success","time":14,"title":"5.11 Ensure Show All Filename Extensions Setting is Enabled (Automated)"},{"description":"In order to properly monitor the use of the sudo command, logs events for any use of sudo should be captured in the unified log.","id":"5_12","regex":"1","result":"success","time":15,"title":"5.12 Ensure Logging Is Enabled for Sudo (Automated)"}]
+[
+  {
+    "description": "The cramfs filesystem type is a compressed read-only Linux filesystem embedded in small footprint systems. A cramfs image can be used without having to first decompress the image. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
+    "id": "1_1_1_1",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.1.1 Ensure cramfs kernel module is not available (Automated)"
+  },
+  {
+    "description": "The freevxfs filesystem type is a free version of the Veritas type filesystem. This is the primary filesystem type for HP-UX operating systems. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
+    "id": "1_1_1_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.1.2 Ensure freevxfs kernel module is not available"
+  },
+  {
+    "description": "The hfs filesystem type is a hierarchical filesystem that allows you to mount Mac OS filesystems. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
+    "id": "1_1_1_3",
+    "regex": "hfs exists in",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.1.3 Ensure hfs kernel module is not available (Automated)"
+  },
+  {
+    "description": "The hfsplus filesystem type is a hierarchical filesystem designed to replace hfs that allows you to mount Mac OS filesystems. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
+    "id": "1_1_1_4",
+    "regex": "hfsplus exists",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.1.4 Ensure hfsplus kernel module is not available (Automated)"
+  },
+  {
+    "description": "The jffs2 (journaling flash filesystem 2) filesystem type is a log-structured filesystem used in flash memory devices. Removing support for unneeded filesystem types reduces the local attack surface of the system. If this filesystem type is not needed, disable it.",
+    "id": "1_1_1_5",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.1.5 Ensure jffs2 kernel module is not available (Automated)"
+  },
+  {
+    "description": "The Linux overlay kernel module, commonly referred to as Overlayfs, is a union mount filesystem. It allows the user to overlay one file system on top of another, and creates a single, unified view. Disabling the overlay kernel module reduces the local attack surface by removing support for unnecessary filesystem types and mitigates potential risks associated with unauthorized execution of setuid files, enhancing the overall system security.",
+    "id": "1_1_1_6",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.1.6 Ensure overlay kernel module is not available (Automated)"
+  },
+  {
+    "description": "Verify the udf kernel module is not available on the system or has been disabled. If the udf kernel module is not needed, it should be disabled to reduce the local attack surface.",
+    "id": "1_1_1_8",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.1.8 Ensure udf kernel module is not available (Automated)"
+  },
+  {
+    "description": "Verify the firewire-core kernel module is not available on the system or has been disabled.",
+    "id": "1_1_1_9",
+    "regex": "firewire-core exists in",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.1.9 Ensure firewire-core kernel module is not available"
+  },
+  {
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /tmp filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /tmp.",
+    "id": "1_1_2_1_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.1.2 Ensure nodev option set on /tmp partition (Automated)"
+  },
+  {
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /tmp filesystem, which is intended for temporary file storage, to prevent users from creating setuid files in /tmp.",
+    "id": "1_1_2_1_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.1.3 Ensure nosuid option set on /tmp partition (Automated)"
+  },
+  {
+    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries. This is important for the /tmp filesystem, which is intended for temporary file storage, to prevent users from running executable binaries from /tmp.",
+    "id": "1_1_2_1_4",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.1.4 Ensure noexec option set on /tmp partition (Automated)"
+  },
+  {
+    "description": "The /dev/shm directory is a world-writable directory that can function as shared memory that facilitates inter process communication (IPC). Making /dev/shm its own file system allows an administrator to set additional mount options such as the noexec option on the mount, making /dev/shm useless for an attacker to install executable code.",
+    "id": "1_1_2_2_1",
+    "regex": "^/dev/shm\\s+tmpfs\\s+tmpfs\\s+rw,nosuid,nodev,noexec,relatime,seclabel$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.2.1 Ensure /dev/shm is tmpfs or a separate partition"
+  },
+  {
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot attempt to create special devices in /dev/shm partitions.",
+    "id": "1_1_2_2_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.2.2 Ensure nodev option set on /dev/shm partition"
+  },
+  {
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This prevents users from introducing privileged programs onto the system and allowing non-root users to execute them.",
+    "id": "1_1_2_2_3",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.2.3 Ensure nosuid option set on /dev/shm partition"
+  },
+  {
+    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries.",
+    "id": "1_1_2_2_4",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.2.4 Ensure noexec option set on /dev/shm partition"
+  },
+  {
+    "description": "The /home directory is used to support disk storage needs of local users. Configuring /home as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
+    "id": "1_1_2_3_1",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 10,
+    "title": "1.1.2.3.1 Ensure separate partition exists for /home (Automated)"
+  },
+  {
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /home filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /home.",
+    "id": "1_1_2_3_2",
+    "regex": "^Nothing should be returned$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.3.2 Ensure nodev option set on /home partition (Automated)"
+  },
+  {
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /home filesystem, which is intended for user file storage, to prevent users from creating setuid files in /home.",
+    "id": "1_1_2_3_3",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.3.3 Ensure nosuid option set on /home partition (Automated)"
+  },
+  {
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot create a block or character special devices in /var, which is not intended to support devices.",
+    "id": "1_1_2_4_2",
+    "regex": "^Nothing should be returned$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.4.2 Ensure nodev option set on /var partition (Automated)"
+  },
+  {
+    "description": "The /var/tmp directory is a world-writable directory used for temporary storage by all users and some applications. Temporary files residing in /var/tmp are to be preserved between reboots. Configuring /var/tmp as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
+    "id": "1_1_2_5_1",
+    "regex": "^/var/tmp\\s+.*mounted$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.5.1 Ensure separate partition exists for /var/tmp"
+  },
+  {
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /var/tmp filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /var/tmp.",
+    "id": "1_1_2_5_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.5.2 Ensure nodev option set on /var/tmp partition"
+  },
+  {
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for security as it prevents users from creating setuid files in /var/tmp, which is intended for temporary file storage.",
+    "id": "1_1_2_5_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.5.3 Ensure nosuid option set on /var/tmp partition"
+  },
+  {
+    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries.",
+    "id": "1_1_2_5_4",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.5.4 Ensure noexec option set on /var/tmp partition"
+  },
+  {
+    "description": "The /var/log directory is used by system services to store log data. Configuring /var/log as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
+    "id": "1_1_2_6_1",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.6.1 Ensure separate partition exists for /var/log (Automated)"
+  },
+  {
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /var/log filesystem, which is not intended to support devices, ensuring that users cannot create a block or character special devices in /var/log.",
+    "id": "1_1_2_6_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.6.2 Ensure nodev option set on /var/log partition"
+  },
+  {
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /var/log filesystem, which is intended solely for log files, to prevent users from creating setuid files in this directory.",
+    "id": "1_1_2_6_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.6.3 Ensure nosuid option set on /var/log partition"
+  },
+  {
+    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries.",
+    "id": "1_1_2_6_4",
+    "regex": "^.*noexec.*$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.6.4 Ensure noexec option set on /var/log partition"
+  },
+  {
+    "description": "The auditing daemon, auditd, stores log data in the /var/log/audit directory. Configuring /var/log/audit as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
+    "id": "1_1_2_7_1",
+    "regex": "/var/log/audit.*mounted",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.7.1 Ensure separate partition exists for /var/log/audit (Automated)"
+  },
+  {
+    "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This is important for the /var/log/audit filesystem, which is not intended to support devices, ensuring that users cannot create block or character special devices in /var/log/audit.",
+    "id": "1_1_2_7_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.7.2 Ensure nodev option set on /var/log/audit partition"
+  },
+  {
+    "description": "The nosuid mount option specifies that the filesystem cannot contain setuid files. This is important for the /var/log/audit filesystem, which is intended for variable files such as logs, to ensure that users cannot create setuid files in this directory.",
+    "id": "1_1_2_7_3",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.1.2.7.3 Ensure nosuid option set on /var/log/audit partition"
+  },
+  {
+    "description": "The noexec mount option specifies that the filesystem cannot contain executable binaries. This is important for the /var/log/audit filesystem, which is intended solely for audit logs, to prevent users from running executable binaries from this location.",
+    "id": "1_1_2_7_4",
+    "regex": "^$",
+    "result": "fail",
+    "time": 10,
+    "title": "1.1.2.7.4 Ensure noexec option set on /var/log/audit partition"
+  },
+  {
+    "description": "Ensure that GPG keys are configured correctly for your system to verify package integrity during and after installation.",
+    "id": "1_2_1_1",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 60,
+    "title": "1.2.1.1 Ensure GPG keys are configured (Manual)"
+  },
+  {
+    "description": "The gpgcheck option controls verifying package signatures after download. This option is configurable as a global option in the main section of /etc/dnf/dnf.conf and a per repository option in individual files in the /etc/yum.repos.d/* directory. The option is enabled if gpgcheck is set to 1, true, or yes. The option is disabled if gpgcheck is set to 0, false, or no. If an invalid option is set, e.g. gpgcheck=2, the global option will be used. Settings in files in the /etc/yum.repos.d/ directory take precedence over the global configuration.",
+    "id": "1_2_1_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 10,
+    "title": "1.2.1.2 Ensure gpgcheck is configured (Automated)"
+  },
+  {
+    "description": "The repo_gpgcheck option, found in the main section of the /etc/dnf/dnf.conf and individual /etc/yum.repos.d/* files, will perform a GPG signature check on the repodata.",
+    "id": "1_2_1_3",
+    "regex": "^repo_gpgcheck=1",
+    "result": "fail",
+    "time": 30,
+    "title": "1.2.1.3 Ensure repo_gpgcheck is globally activated (Manual)"
+  },
+  {
+    "description": "Systems need to have the respective package manager repositories configured to ensure that the system is able to receive the latest patches and updates.",
+    "id": "1_2_1_4",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.2.1.4 Ensure package manager repositories are configured"
+  },
+  {
+    "description": "The RPM packaging specification allows for 3 levels of dependencies to be declared: hard dependencies (Requires / Provides) for packages which must be installed for a minimal installation of the application to function, weak dependencies (Recommends / Supplements) for packages which provide additional features, but which are not required for a minimal installation to function, and hints (Suggests / Enhances) for packages which offer add-ons which might be useful. Unless a system specifically requires the additional capabilities provided by the weak dependencies, it is recommended that the packages are not installed to reduce the potential attack surface.",
+    "id": "1_2_1_5",
+    "regex": "install_weak_deps=(0|false|no)",
+    "result": "fail",
+    "time": 10,
+    "title": "1.2.1.5 Ensure weak dependencies are configured (Automated)"
+  },
+  {
+    "description": "Security vulnerabilities and functional improvements are regularly addressed through software updates and patches. It is recommended that operating system updates be performed on enterprise assets through automated patch management on a monthly, or more frequent, basis.",
+    "id": "1_2_2_1",
+    "regex": "^No packages marked for update$",
+    "result": "fail",
+    "time": 60,
+    "title": "1.2.2.1 Ensure updates, patches, and additional security software are installed (Manual)"
+  },
+  {
+    "description": "SELinux provides Mandatory Access Control. Without a Mandatory Access Control system installed only the default Discretionary Access Control system will be available.",
+    "id": "1_3_1_1",
+    "regex": "libselinux-.*",
+    "result": "fail",
+    "time": 10,
+    "title": "1.3.1.1 Ensure SELinux is installed (Automated)"
+  },
+  {
+    "description": "Configure SELINUX to be enabled at boot time and verify that it has not been overwritten by the grub boot parameters.",
+    "id": "1_3_1_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.3.1.2 Ensure SELinux is not disabled in bootloader configuration (Automated)"
+  },
+  {
+    "description": "Configure SELinux to meet or exceed the default targeted policy, which constrains daemons and system software only.",
+    "id": "1_3_1_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.3.1.3 Ensure SELinux policy is configured (Automated)"
+  },
+  {
+    "description": "Ensure that SELinux is not running in disabled mode, as this compromises system security by not enforcing the SELinux policy.",
+    "id": "1_3_1_4",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 10,
+    "title": "1.3.1.4 Ensure the SELinux mode is not disabled (Automated)"
+  },
+  {
+    "description": "Ensure that no unconfined services are running on the system, as they can pose security risks by allowing processes to operate without the restrictions of SELinux policies.",
+    "id": "1_3_1_6",
+    "regex": "^$",
+    "result": "fail",
+    "time": 10,
+    "title": "1.3.1.6 Ensure no unconfined services exist (Manual)"
+  },
+  {
+    "description": "The mcstransd daemon provides category label information to client processes requesting information. The label translations are defined in /etc/selinux/targeted/setrans.conf. Since this service is not used very often, remove it to reduce the amount of potentially vulnerable code running on the system.",
+    "id": "1_3_1_7",
+    "regex": "mcstrans is not installed",
+    "result": "fail",
+    "time": 10,
+    "title": "1.3.1.7 Ensure the MCS Translation Service (mcstrans) is not installed (Automated)"
+  },
+  {
+    "description": "The SETroubleshoot service notifies desktop users of SELinux denials through a user-friendly interface. The service provides important information around configuration errors, unauthorized intrusions, and other potential errors. It is considered unnecessary on a server, especially if X Windows is disabled.",
+    "id": "1_3_1_8",
+    "regex": "package setroubleshoot is not installed",
+    "result": "fail",
+    "time": 10,
+    "title": "1.3.1.8 Ensure SETroubleshoot is not installed (Automated)"
+  },
+  {
+    "description": "Setting the boot loader password will require that anyone rebooting the system must enter a password before being able to set command line boot parameters.",
+    "id": "1_4_1",
+    "regex": "GRUB2_PASSWORD=grub.pbkdf2.sha512",
+    "result": "fail",
+    "time": 30,
+    "title": "1.4.1 Ensure bootloader password is set (Automated)"
+  },
+  {
+    "description": "The grub files contain information on boot settings and passwords for unlocking boot options. Setting the permissions to read and write for root only prevents non-root users from seeing the boot parameters or changing them. Non-root users who read the boot parameters may be able to identify weaknesses in security upon boot and be able to exploit them.",
+    "id": "1_4_2",
+    "regex": "^/boot/grub2/.*:0600:root:root$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.4.2 Ensure access to bootloader config is configured"
+  },
+  {
+    "description": "Ensure that the hard limit for core file size is set to 0 for all users to prevent sensitive data from being included in core dumps.",
+    "id": "1_5_1",
+    "regex": "^/etc/security/limits.d/.*:.*hard core 0$",
+    "result": "fail",
+    "time": 30,
+    "title": "1.5.1 Ensure core file size is configured (Automated)"
+  },
+  {
+    "description": "fs.protected_hardlinks Controls the creation of hard links to files. By enabling the fs.protected_hardlinks kernel parameter, users can no longer create soft or hard links to files they do not own.",
+    "id": "1_5_2",
+    "regex": "fs\\.protected_hardlinks\\s*=\\s*1",
+    "result": "fail",
+    "time": 10,
+    "title": "1.5.2 Ensure fs.protected_hardlinks is configured (Automated)"
+  },
+  {
+    "description": "Verify fs.protected_symlinks is set to 1 in the running configuration to ensure that symbolic links are handled securely by the kernel.",
+    "id": "1_5_3",
+    "regex": "fs\\.protected_symlinks = 1",
+    "result": "fail",
+    "time": 10,
+    "title": "1.5.3 Ensure fs.protected_symlinks is configured (Automated)"
+  },
+  {
+    "description": "fs.suid_dumpable governs whether a privileged process (with the setuid bit) can generate a core dump, regardless of other configurations. The default value should be set to 0 to prevent sensitive data from being exposed in core dumps.",
+    "id": "1_5_4",
+    "regex": "fs.suid_dumpable = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "1.5.4 Ensure fs.suid_dumpable is configured (Automated)"
+  },
+  {
+    "description": "kernel.dmesg_restrict can be used to configure the Linux kernel and prevent unprivileged users access to information from the kernel's log buffer.",
+    "id": "1_5_5",
+    "regex": "kernel\\.dmesg_restrict\\s*=\\s*1",
+    "result": "fail",
+    "time": 10,
+    "title": "1.5.5 Ensure kernel.dmesg_restrict is configured (Automated)"
+  },
+  {
+    "description": "Verify kernel.kptr_restrict is set to a value of: 1 or 2. This setting controls the exposure of kernel addresses, which can help mitigate the risk of attacks that exploit kernel information.",
+    "id": "1_5_6",
+    "regex": "kernel\\.kptr_restrict\\s*=\\s*[12]",
+    "result": "fail",
+    "time": 10,
+    "title": "1.5.6 Ensure kernel.kptr_restrict is configured (Automated)"
+  },
+  {
+    "description": "Address space layout randomization (ASLR) is an exploit mitigation technique which randomly arranges the address space of key data areas of a process. This helps in making it difficult to write memory page exploits as the memory placement will be consistently shifting.",
+    "id": "1_5_8",
+    "regex": "kernel\\.randomize_va_space = 2",
+    "result": "fail",
+    "time": 10,
+    "title": "1.5.8 Ensure kernel.randomize_va_space is configured"
+  },
+  {
+    "description": "Ensure that the system-wide crypto policy is not set to LEGACY, which allows the use of outdated and less secure algorithms and protocols.",
+    "id": "1_6_1",
+    "regex": "^\\s*LEGACY\\b",
+    "result": "fail",
+    "time": 10,
+    "title": "1.6.1 Ensure system wide crypto policy is not set to legacy"
+  },
+  {
+    "description": "Ensure that the system-wide cryptographic policy disables SHA-1 hash and signature support to mitigate vulnerabilities associated with this weak hash function.",
+    "id": "1_6_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.6.2 Ensure system wide crypto policy disables sha1 hash and signature support (Automated)"
+  },
+  {
+    "description": "Verify that weak Message Authentication Code (MAC) algorithms are disabled in the system-wide crypto policy.",
+    "id": "1_6_3",
+    "regex": "^\\s*mac\\s*=\\s*([^#\\n\\r]+)?-128\\b",
+    "result": "fail",
+    "time": 10,
+    "title": "1.6.3 Ensure system wide crypto policy macs are configured"
+  },
+  {
+    "description": "Ensure that the system-wide crypto policy disables CBC for SSH to mitigate vulnerabilities associated with the CBC mode in SSH messages.",
+    "id": "1_6_4",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.6.4 Ensure system wide crypto policy disables cbc for ssh"
+  },
+  {
+    "description": "GDM is the GNOME Display Manager which handles graphical login for GNOME based systems. This control ensures that the login banner configuration is locked to prevent users from changing it, thereby informing them of their legal status regarding the system.",
+    "id": "1_8_1",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.8.1 Ensure GDM login banner is configured (Automated)"
+  },
+  {
+    "description": "GNOME Display Manager (GDM) handles graphical login for GNOME based systems. The disable-user-list option controls if a list of users is displayed on the login screen. By using the lockdown mode in dconf, you can prevent users from changing specific settings.",
+    "id": "1_8_2",
+    "regex": "true",
+    "result": "fail",
+    "time": 30,
+    "title": "1.8.2 Ensure GDM disable-user-list is configured (Automated)"
+  },
+  {
+    "description": "Ensure that the GDM screen lock settings are configured to prevent unauthorized access when the user is idle.",
+    "id": "1_8_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "1.8.3 Ensure GDM screen lock is configured (Automated)"
+  },
+  {
+    "description": "The autorun-never setting allows the GNOME Desktop Display Manager to disable autorun through GDM. This is important to prevent malware from executing when removable media is inserted into a system.",
+    "id": "1_8_5",
+    "regex": "false",
+    "result": "fail",
+    "time": 30,
+    "title": "1.8.5 Ensure GDM autorun-never is configured (Automated)"
+  },
+  {
+    "description": "Verify that Xwayland is not enabled to mitigate security risks associated with X11 applications running in a Wayland environment.",
+    "id": "1_8_6",
+    "regex": "WaylandEnable=false",
+    "result": "fail",
+    "time": 10,
+    "title": "1.8.6 Ensure Xwayland is configured (Automated)"
+  },
+  {
+    "description": "The GNOME Display Manager (GDM) is a program that manages graphical display servers and handles graphical user logins. If a Graphical User Interface (GUI) is not required, it should be removed to reduce the attack surface of the system.",
+    "id": "2_1_19",
+    "regex": "Installed Environment Groups:.*Server",
+    "result": "fail",
+    "time": 30,
+    "title": "2.1.19 Ensure GNOME Display Manager is removed (Automated)"
+  },
+  {
+    "description": "Ensure that the FTP client is not installed on the system to reduce the potential attack surface and enhance security.",
+    "id": "2_2_1",
+    "regex": "package ftp is not installed",
+    "result": "fail",
+    "time": 10,
+    "title": "2.2.1 Ensure ftp client is not installed (Automated)"
+  },
+  {
+    "description": "Ensure that the openldap-clients package is not installed to reduce the potential attack surface.",
+    "id": "2_2_2",
+    "regex": "package openldap-clients is not installed",
+    "result": "fail",
+    "time": 10,
+    "title": "2.2.2 Ensure ldap client is not installed (Automated)"
+  },
+  {
+    "description": "The telnet package contains the telnet client, which allows users to start connections to other systems via the telnet protocol. The telnet protocol is insecure and unencrypted, which could allow an unauthorized user to steal credentials. It is advisable to remove the telnet client to prevent accidental or intentional misuse.",
+    "id": "2_2_3",
+    "regex": "package telnet is not installed",
+    "result": "fail",
+    "time": 10,
+    "title": "2.2.3 Ensure telnet client is not installed (Automated)"
+  },
+  {
+    "description": "Trivial File Transfer Protocol (TFTP) is a simple protocol for exchanging files between two TCP/IP machines. TFTP servers allow connections from a TFTP Client for sending and receiving files. TFTP does not have built-in encryption, access control or authentication, making it easy for an attacker to exploit TFTP to gain access to files.",
+    "id": "2_2_4",
+    "regex": "package tftp is not installed",
+    "result": "fail",
+    "time": 10,
+    "title": "2.2.4 Ensure tftp client is not installed (Automated)"
+  },
+  {
+    "description": "System time should be synchronized between all systems in an environment. This is typically done by establishing an authoritative time server or set of servers and having all systems synchronize their clocks to them.",
+    "id": "2_3_1",
+    "regex": "chrony-.*",
+    "result": "fail",
+    "time": 10,
+    "title": "2.3.1 Ensure time synchronization is in use (Automated)"
+  },
+  {
+    "description": "The file /etc/sysconfig/chronyd allows configuration of options for chrony to include the user chrony is run as. By default, this is set to the user chrony. Services should not be set to run as the root user.",
+    "id": "2_3_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "2.3.3 Ensure chrony is not run as the root user (Automated)"
+  },
+  {
+    "description": "The cron daemon is used to execute batch jobs on the system. It is essential for running maintenance jobs, including security monitoring tasks.",
+    "id": "2_4_1_1",
+    "regex": "enabled\\s+active",
+    "result": "fail",
+    "time": 30,
+    "title": "2.4.1.1 Ensure cron daemon is enabled and active (Automated)"
+  },
+  {
+    "description": "The /etc/crontab file is used by cron to control its own jobs. The commands in this item make sure that root is the user and group owner of the file and that only the owner can access the file.",
+    "id": "2_4_1_2",
+    "regex": "Access: \\(600/-rw-------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 30,
+    "title": "2.4.1.2 Ensure access to /etc/crontab is configured (Automated)"
+  },
+  {
+    "description": "This directory contains system cron jobs that need to run on an hourly basis. The files in this directory cannot be manipulated by the crontab command, but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory.",
+    "id": "2_4_1_3",
+    "regex": "Access: \\(700/drwx------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "2.4.1.3 Ensure access to /etc/cron.hourly is configured"
+  },
+  {
+    "description": "The /etc/cron.daily directory contains system cron jobs that need to run on a daily basis. The files in this directory cannot be manipulated by the crontab command, but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory.",
+    "id": "2_4_1_4",
+    "regex": "Access: \\(700/drwx------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "2.4.1.4 Ensure access to /etc/cron.daily is configured (Automated)"
+  },
+  {
+    "description": "The /etc/cron.weekly directory contains system cron jobs that need to run on a weekly basis. The files in this directory cannot be manipulated by the crontab command but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory.",
+    "id": "2_4_1_5",
+    "regex": "Access: \\(700/drwx------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "2.4.1.5 Ensure access to /etc/cron.weekly is configured"
+  },
+  {
+    "description": "The /etc/cron.monthly directory contains system cron jobs that need to run on a monthly basis. The files in this directory cannot be manipulated by the crontab command but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory.",
+    "id": "2_4_1_6",
+    "regex": "Access: \\(700/drwx------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "2.4.1.6 Ensure access to /etc/cron.monthly is configured"
+  },
+  {
+    "description": "The /etc/cron.yearly directory contains system cron jobs that need to run on an annual basis. The files in this directory cannot be manipulated by the crontab command but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory.",
+    "id": "2_4_1_7",
+    "regex": "Access: \\(700/drwx------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "2.4.1.7 Ensure access to /etc/cron.yearly is configured"
+  },
+  {
+    "description": "The /etc/cron.d directory contains system cron jobs that need to run in a similar manner to the hourly, daily weekly and monthly jobs from /etc/crontab, but require more granular control as to when they run. The files in this directory cannot be manipulated by the crontab command but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory.",
+    "id": "2_4_1_8",
+    "regex": "Access: \\(700/drwx------\\) Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 30,
+    "title": "2.4.1.8 Ensure access to /etc/cron.d is configured (Automated)"
+  },
+  {
+    "description": "Configure data access control lists based on a user’s need to know. Apply data access control lists, also known as access permissions, to local and remote file systems, databases, and applications.",
+    "id": "3_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "3.3 Configure Data Access Control Lists"
+  },
+  {
+    "description": "net.ipv4.icmp_echo_ignore_broadcasts controls if all ICMP echo and timestamp requests to broadcast and multicast addresses are ignored.",
+    "id": "3_3_1_7",
+    "regex": "net.ipv4.icmp_echo_ignore_broadcasts = 1",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.7 Ensure net.ipv4.icmp_echo_ignore_broadcasts is configured (Automated)"
+  },
+  {
+    "description": "When enabled, this feature logs packets with un-routable source addresses to the kernel log. This allows an administrator to investigate the possibility that an attacker is sending spoofed packets to their system.",
+    "id": "3_3_1_17",
+    "regex": "net.ipv4.conf.default.log_martians = 1",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.1.17 Ensure net.ipv4.conf.default.log_martians is configured"
+  },
+  {
+    "description": "The net.ipv6.conf.default.forwarding flag tells the system whether it can forward IPv6 on the default or newly added network interface. If IPv6 has been disabled, or this system is a router, this recommendation is not applicable.",
+    "id": "3_3_2_2",
+    "regex": "net.ipv6.conf.default.forwarding = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.2.2 Ensure net.ipv6.conf.default.forwarding is configured"
+  },
+  {
+    "description": "Verify that the net.ipv6.conf.default.accept_redirects is set to 0, ensuring that the system does not accept IPv6 ICMP redirect messages on a newly added network interface.",
+    "id": "3_3_2_4",
+    "regex": "net.ipv6.conf.default.accept_redirects = 0",
+    "result": "fail",
+    "time": 10,
+    "title": "3.3.2.4 Ensure net.ipv6.conf.default.accept_redirects is configured"
+  },
+  {
+    "description": "firewalld is a high-level firewall rules management frontend utility that helps protect against threats originating from within a corporate network.",
+    "id": "4_1_1",
+    "regex": "firewalld-.*",
+    "result": "fail",
+    "time": 10,
+    "title": "4.1.1 Ensure firewalld is installed (Automated)"
+  },
+  {
+    "description": "The FirewallBackend option selects the firewall backend implementation, ensuring that the critical functionality of the firewall is maintained by using the recommended backend.",
+    "id": "4_1_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "4.1.2 Ensure firewalld backend is configured (Automated)"
+  },
+  {
+    "description": "firewalld.service is a firewall service daemon that provides a dynamic, customizable firewall with a D-Bus interface. It must be active to enforce rules configured through FirewallD and enabled to start automatically after a system reboot.",
+    "id": "4_1_3",
+    "regex": "enabled",
+    "result": "fail",
+    "time": 10,
+    "title": "4.1.3 Ensure firewalld.service is configured (Automated)"
+  },
+  {
+    "description": "Implement and manage a firewall on servers, where supported. Example implementations include a virtual firewall, operating system firewall, or a third-party firewall agent.",
+    "id": "4_4",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "4.4 Implement and Manage a Firewall on Servers"
+  },
+  {
+    "description": "Implement and manage a host-based firewall or port-filtering tool on end-user devices, with a default-deny rule that drops all traffic except those services and ports that are explicitly allowed.",
+    "id": "4_5",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "4.5 Implement and Manage a Firewall on End-User Devices"
+  },
+  {
+    "description": "The GSSAPIAuthentication parameter specifies whether user authentication based on GSSAPI is allowed. It should be disabled to reduce the attack surface of the system.",
+    "id": "5_1_9",
+    "regex": "gssapiauthentication no",
+    "result": "fail",
+    "time": 30,
+    "title": "5.1.9 Ensure sshd GSSAPIAuthentication is disabled (Automated)"
+  },
+  {
+    "description": "The HostbasedAuthentication parameter specifies if authentication is allowed through trusted hosts via the user of .rhosts, or /etc/hosts.equiv, along with successful public key client host authentication.",
+    "id": "5_1_10",
+    "regex": "hostbasedauthentication no",
+    "result": "fail",
+    "time": 10,
+    "title": "5.1.10 Ensure sshd HostbasedAuthentication is disabled"
+  },
+  {
+    "description": "Use unique passwords for all enterprise assets. Best practice implementation includes, at a minimum, an 8-character password for accounts using MFA and a 14-character password for accounts not using MFA.",
+    "id": "5_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "5.2 Use Unique Passwords"
+  },
+  {
+    "description": "Ensure that local logging has been enabled on all systems and networking devices.",
+    "id": "6_2",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "6.2 Activate audit logging"
+  },
+  {
+    "description": "Enable system logging to include detailed information such as an event source, date, user, timestamp, source addresses, destination addresses, and other useful elements.",
+    "id": "6_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "6.3 Enable Detailed Logging"
+  },
+  {
+    "description": "Ensure that all systems that store logs have adequate storage space for the logs generated.",
+    "id": "6_4",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 60,
+    "title": "6.4 Ensure adequate storage for logs"
+  },
+  {
+    "description": "The /etc/passwd file contains user account information that is used by many system utilities and therefore must be readable for these utilities to operate. It is critical to ensure that the /etc/passwd file is protected from unauthorized write access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
+    "id": "7_1_1",
+    "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 30,
+    "title": "7.1.1 Ensure access to /etc/passwd is configured (Automated)"
+  },
+  {
+    "description": "The /etc/passwd- file contains backup user account information. It is critical to ensure that the /etc/passwd- file is protected from unauthorized access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
+    "id": "7_1_2",
+    "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\)  Gid: \\{ 0/ root\\)",
+    "result": "fail",
+    "time": 30,
+    "title": "7.1.2 Ensure access to /etc/passwd- is configured (Automated)"
+  },
+  {
+    "description": "The /etc/group file contains a list of all the valid groups defined in the system. The command below allows read/write access for root and read access for everyone else. The /etc/group file needs to be protected from unauthorized changes by non-privileged users, but needs to be readable as this information is used with many non-privileged programs.",
+    "id": "7_1_3",
+    "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "7.1.3 Ensure access to /etc/group is configured (Automated)"
+  },
+  {
+    "description": "The /etc/group- file contains a backup list of all the valid groups defined in the system. It is critical to ensure that the /etc/group- file is protected from unauthorized access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
+    "id": "7_1_4",
+    "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "7.1.4 Ensure access to /etc/group- is configured (Automated)"
+  },
+  {
+    "description": "The /etc/shadow file is used to store the information about user accounts that is critical to the security of those accounts, such as the hashed password and other security information. It is essential to ensure that access to this file is restricted to prevent unauthorized access and potential exploitation.",
+    "id": "7_1_5",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 10,
+    "title": "7.1.5 Ensure access to /etc/shadow is configured (Automated)"
+  },
+  {
+    "description": "The /etc/shadow- file is used to store backup information about user accounts that is critical to the security of those accounts, such as the hashed password and other security information.",
+    "id": "7_1_6",
+    "regex": "Access: \\(0/----------\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "7.1.6 Ensure access to /etc/shadow- is configured (Automated)"
+  },
+  {
+    "description": "The /etc/gshadow file is used to store the information about groups that is critical to the security of those accounts, such as the hashed password and other security information. Ensuring proper access configuration is vital to prevent unauthorized access and potential exploitation.",
+    "id": "7_1_7",
+    "regex": "Access: \\(0/----------\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "7.1.7 Ensure access to /etc/gshadow is configured (Automated)"
+  },
+  {
+    "description": "The /etc/gshadow- file is used to store backup information about groups that is critical to the security of those accounts, such as the hashed password and other security information. It is essential to ensure that this file is protected from unauthorized access, as its permissions could be altered either inadvertently or through malicious actions.",
+    "id": "7_1_8",
+    "regex": "Access: \\(0/----------\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 10,
+    "title": "7.1.8 Ensure access to /etc/gshadow- is configured (Automated)"
+  },
+  {
+    "description": "/etc/shells is a text file which contains the full pathnames of valid login shells. This file is consulted by chsh and available to be queried by other programs. It is critical to ensure that the /etc/shells file is protected from unauthorized access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
+    "id": "7_1_9",
+    "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\) Gid: \\( 0/ root\\)",
+    "result": "fail",
+    "time": 30,
+    "title": "7.1.9 Ensure access to /etc/shells is configured (Automated)"
+  },
+  {
+    "description": "/etc/security/opasswd and its backup /etc/security/opasswd.old hold user's previous passwords if pam_unix or pam_pwhistory is in use on the system. It is critical to ensure that /etc/security/opasswd is protected from unauthorized access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
+    "id": "7_1_10",
+    "regex": "^.*Access: \\(0600/-rw-------\\).*",
+    "result": "fail",
+    "time": 30,
+    "title": "7.1.10 Ensure access to /etc/security/opasswd is configured (Automated)"
+  },
+  {
+    "description": "Local accounts can use shadowed passwords. With shadowed passwords, the passwords are saved in shadow password file, /etc/shadow, encrypted by a salted one-way hash. Accounts with a shadowed password have an x in the second field in /etc/passwd.",
+    "id": "7_2_1",
+    "regex": "^User: \".*\" is not set to shadowed passwords",
+    "result": "fail",
+    "time": 10,
+    "title": "7.2.1 Ensure accounts in /etc/passwd use shadowed passwords"
+  },
+  {
+    "description": "An account with an empty password field means that anybody may log in as that user without providing a password.",
+    "id": "7_2_2",
+    "regex": "^$",
+    "result": "fail",
+    "time": 30,
+    "title": "7.2.2 Ensure /etc/shadow password fields are not empty"
+  },
+  {
+    "description": "Over time, system administration errors and changes can lead to groups being defined in /etc/passwd but not in /etc/group. Groups defined in the /etc/passwd file but not in the /etc/group file pose a threat to system security since group permissions are not properly managed.",
+    "id": "7_2_3",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "7.2.3 Ensure all groups in /etc/passwd exist in /etc/group"
+  },
+  {
+    "description": "Ensure that no duplicate User IDs (UIDs) exist in the system to maintain accountability and appropriate access protections.",
+    "id": "7_2_4",
+    "regex": "^Duplicate UID:",
+    "result": "fail",
+    "time": 60,
+    "title": "7.2.4 Ensure no duplicate UIDs exist (Automated)"
+  },
+  {
+    "description": "Ensure that no duplicate Group IDs (GIDs) exist in the system to maintain accountability and appropriate access protections.",
+    "id": "7_2_5",
+    "regex": "PASS",
+    "result": "fail",
+    "time": 30,
+    "title": "7.2.5 Ensure no duplicate GIDs exist (Automated)"
+  },
+  {
+    "description": "Ensure that no duplicate user names exist in the system, as this can lead to security issues with shared UIDs.",
+    "id": "7_2_6",
+    "regex": "^Duplicate User:",
+    "result": "fail",
+    "time": 30,
+    "title": "7.2.6 Ensure no duplicate user names exist (Automated)"
+  },
+  {
+    "description": "Ensure that no duplicate group names exist in the system, as this can lead to security issues with shared GIDs.",
+    "id": "7_2_7",
+    "regex": "^Duplicate Group:",
+    "result": "fail",
+    "time": 30,
+    "title": "7.2.7 Ensure no duplicate group names exist (Automated)"
+  },
+  {
+    "description": "Ensure that local interactive user dot files have secure permissions to prevent unauthorized access and modifications by malicious users.",
+    "id": "7_2_9",
+    "regex": "^.*(mode 0644|mode 0600).*",
+    "result": "fail",
+    "time": 30,
+    "title": "7.2.9 Ensure local interactive user dot files access is configured"
+  }
+]

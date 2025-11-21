@@ -1,1 +1,0 @@
-/usr/bin/sudo /usr/bin/grep -e "^flags:" /etc/security/audit_control

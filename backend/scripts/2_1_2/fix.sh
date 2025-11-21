@@ -1,1 +1,0 @@
-/usr/bin/sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on

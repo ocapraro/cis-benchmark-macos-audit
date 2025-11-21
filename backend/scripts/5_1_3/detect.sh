@@ -1,1 +1,0 @@
-/usr/bin/sudo /usr/bin/csrutil authenticated-root status

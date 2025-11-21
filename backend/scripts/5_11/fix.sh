@@ -1,1 +1,0 @@
-/usr/bin/sudo -u ocapraro /usr/bin/defaults write /Users/ocapraro/Library/Preferences/.GlobalPreferences.plist AppleShowAllExtensions -bool true

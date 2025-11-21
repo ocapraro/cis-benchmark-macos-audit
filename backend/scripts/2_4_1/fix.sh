@@ -1,1 +1,0 @@
-sudo -u ocapraro defaults -currentHost write com.apple.screensaver idleTime -int 1200
