@@ -82,7 +82,7 @@
   {
     "description": "The /dev/shm directory is a world-writable directory that can function as shared memory that facilitates inter process communication (IPC). Making /dev/shm its own file system allows an administrator to set additional mount options such as the noexec option on the mount, making /dev/shm useless for an attacker to install executable code.",
     "id": "1_1_2_2_1",
-    "regex": "^/dev/shm\\s+tmpfs\\s+tmpfs\\s+rw,nosuid,nodev,noexec,relatime,seclabel$",
+    "regex": "^/dev/shm\\s+tmpfs\\s+tmpfs\\s+.*$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.2.1 Ensure /dev/shm is tmpfs or a separate partition"
