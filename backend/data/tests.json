@@ -122,7 +122,7 @@
   {
     "description": "The nodev mount option specifies that the filesystem cannot contain special devices. This ensures that users cannot create a block or character special devices in /home.",
     "id": "1_1_2_3_2",
-    "regex": "Nothing should be returned",
+    "regex": "^$",
     "result": "fail",
     "time": 30,
     "title": "1.1.2.3.2 Ensure nodev option set on /home partition (Automated)"
