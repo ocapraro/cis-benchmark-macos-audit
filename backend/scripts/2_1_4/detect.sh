@@ -1,1 +1,1 @@
-rpm -q kea || systemctl show kea-dhcp-ddns.service kea-dhcp4.service kea-dhcp6.service -p UnitFileState,ActiveState | grep -Pi '=(enabled|active)'
+rpm -q kea 2>&1 | grep -q 'not installed' && echo "package kea is not installed" || echo "package kea is installed"

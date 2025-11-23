@@ -1,1 +1,1 @@
-findmnt -kn /var/log | grep -v nosuid || exit 1
+findmnt -kn /var/log | grep -v nosuid || echo ""

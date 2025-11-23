@@ -1,1 +1,1 @@
-grubby --info=ALL | grep -Po '(selinux|enforcing)=0\b' || exit 1
+grubby --info=ALL | grep -Po '(selinux|enforcing)=0\b' || echo ""

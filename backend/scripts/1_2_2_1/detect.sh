@@ -1,1 +1,1 @@
-dnf check-update | grep -q 'No packages marked for update' && exit 0 || exit 1
+dnf check-update 2>&1 || echo ""

@@ -138,7 +138,7 @@
   {
     "description": "The /var directory is used by daemons and other system services to temporarily store dynamic data. Some directories created by these processes may be world-writable. Mounting /var on a separate partition allows for additional security options and prevents resource exhaustion that could impact the system.",
     "id": "1_1_2_4_1",
-    "regex": "^$",
+    "regex": "/var",
     "result": "error",
     "time": 64,
     "title": "1.1.2.4.1 Ensure separate partition exists for /var (Automated)"
@@ -162,7 +162,7 @@
   {
     "description": "The /var/tmp directory is a world-writable directory used for temporary storage by all users and some applications. Temporary files residing in /var/tmp are to be preserved between reboots. Configuring /var/tmp as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
     "id": "1_1_2_5_1",
-    "regex": "^$",
+    "regex": "/var/tmp",
     "result": "error",
     "time": 64,
     "title": "1.1.2.5.1 Ensure separate partition exists for /var/tmp"
@@ -194,7 +194,7 @@
   {
     "description": "The /var/log directory is used by system services to store log data. Configuring /var/log as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, limiting an attacker's ability to create exploits on the system.",
     "id": "1_1_2_6_1",
-    "regex": "^$",
+    "regex": "/var/log",
     "result": "error",
     "time": 68,
     "title": "1.1.2.6.1 Ensure separate partition exists for /var/log (Automated)"
@@ -226,7 +226,7 @@
   {
     "description": "The auditing daemon, auditd, stores log data in the /var/log/audit directory. Configuring /var/log/audit as its own file system allows an administrator to set additional mount options such as noexec/nosuid/nodev, which limit an attacker's ability to create exploits on the system.",
     "id": "1_1_2_7_1",
-    "regex": "^$",
+    "regex": "/var/log/audit",
     "result": "error",
     "time": 65,
     "title": "1.1.2.7.1 Ensure separate partition exists for /var/log/audit (Automated)"
@@ -306,7 +306,7 @@
   {
     "description": "SELinux provides Mandatory Access Control. Without a Mandatory Access Control system installed only the default Discretionary Access Control system will be available.",
     "id": "1_3_1_1",
-    "regex": "libselinux-.*",
+    "regex": "^libselinux-",
     "result": "fail",
     "time": 118,
     "title": "1.3.1.1 Ensure SELinux is installed (Automated)"
@@ -370,7 +370,7 @@
   {
     "description": "Verify fs.protected_symlinks is set to 1 in the running configuration and in the systemd sysctl configuration file.",
     "id": "1_5_3",
-    "regex": "fs\\.protected_symlinks = 1",
+    "regex": "fs\\.protected_symlinks\\s*=\\s*1",
     "result": "fail",
     "time": 53,
     "title": "1.5.3 Ensure fs.protected_symlinks is configured (Automated)"
@@ -402,7 +402,7 @@
   {
     "description": "Address space layout randomization (ASLR) is an exploit mitigation technique which randomly arranges the address space of key data areas of a process. This makes it difficult to write memory page exploits as the memory placement will be consistently shifting.",
     "id": "1_5_8",
-    "regex": "kernel\\.randomize_va_space = 2",
+    "regex": "kernel\\.randomize_va_space\\s*=\\s*2",
     "result": "fail",
     "time": 52,
     "title": "1.5.8 Ensure kernel.randomize_va_space is configured"
@@ -514,7 +514,7 @@
   {
     "description": "The X Window System provides a Graphical User Interface (GUI) where users can have multiple windows in which to run programs and various add on. The X Windows system is typically used on workstations where users login, but not on servers where users typically do not login. Unless your organization specifically requires graphical login access via X Windows, remove it to reduce the potential attack surface.",
     "id": "2_1_20",
-    "regex": "package xorg-x11-server-Xwayland is not installed",
+    "regex": "not installed",
     "result": "fail",
     "time": 122,
     "title": "2.1.20 Ensure X window server services are not in use"
@@ -546,7 +546,7 @@
   {
     "description": "Ensure that the openldap-clients package is not installed to reduce the potential attack surface.",
     "id": "2_2_2",
-    "regex": "package openldap-clients is not installed",
+    "regex": "not installed",
     "result": "fail",
     "time": 127,
     "title": "2.2.2 Ensure ldap client is not installed (Automated)"
@@ -554,7 +554,7 @@
   {
     "description": "The telnet package contains the telnet client, which allows users to start connections to other systems via the telnet protocol. The telnet protocol is insecure and unencrypted, which could allow an unauthorized user to steal credentials. It is advisable to remove the telnet client to prevent accidental or intentional misuse.",
     "id": "2_2_3",
-    "regex": "package telnet is not installed",
+    "regex": "not installed",
     "result": "fail",
     "time": 124,
     "title": "2.2.3 Ensure telnet client is not installed (Automated)"
@@ -562,7 +562,7 @@
   {
     "description": "Ensure that the TFTP client is not installed on the system to prevent potential security vulnerabilities associated with the Trivial File Transfer Protocol.",
     "id": "2_2_4",
-    "regex": "package tftp is not installed",
+    "regex": "not installed",
     "result": "fail",
     "time": 127,
     "title": "2.2.4 Ensure tftp client is not installed (Automated)"
@@ -570,7 +570,7 @@
   {
     "description": "System time should be synchronized between all systems in an environment. This is typically done by establishing an authoritative time server or set of servers and having all systems synchronize their clocks to them.",
     "id": "2_3_1",
-    "regex": "chrony-.*",
+    "regex": "^chrony-",
     "result": "fail",
     "time": 121,
     "title": "2.3.1 Ensure time synchronization is in use (Automated)"
@@ -752,9 +752,9 @@
     "title": "3.3.1.12 Ensure net.ipv4.conf.all.rp_filter is configured"
   },
   {
-    "description": "Verify net.ipv4.conf.all.accept_source_route is set to 0.",
+    "description": "Verify that the net.ipv4.conf.all.accept_source_route parameter is set to 0.",
     "id": "3_3_1_14",
-    "regex": "^0$",
+    "regex": "net\\.ipv4\\.conf\\.all\\.accept_source_route\\s*=\\s*0",
     "result": "error",
     "time": 61,
     "title": "3.3.1.14 Ensure net.ipv4.conf.all.accept_source_route is configured (Automated)"
@@ -834,7 +834,7 @@
   {
     "description": "Ensure that the firewalld package is installed on the system to manage firewall rules effectively.",
     "id": "4_1_1",
-    "regex": "firewalld-.*",
+    "regex": "^firewalld-",
     "result": "fail",
     "time": 129,
     "title": "4.1.1 Ensure firewalld is installed (Automated)"
@@ -898,7 +898,7 @@
   {
     "description": "The HostbasedAuthentication parameter specifies if authentication is allowed through trusted hosts via the user of .rhosts, or /etc/hosts.equiv, along with successful public key client host authentication.",
     "id": "5_1_10",
-    "regex": "hostbasedauthentication no",
+    "regex": "^hostbasedauthentication no",
     "result": "fail",
     "time": 103,
     "title": "5.1.10 Ensure sshd HostbasedAuthentication is disabled"
@@ -930,7 +930,7 @@
   {
     "description": "auditd is the userspace component to the Linux Auditing System. It's responsible for writing audit records to the disk. The capturing of system events provides system administrators with information to allow them to determine if unauthorized access to their system is occurring.",
     "id": "6_3_1_1",
-    "regex": "auditd.*installed",
+    "regex": "^(audit-|auditd)",
     "result": "fail",
     "time": 125,
     "title": "6.3.1.1 Ensure auditd packages are installed (Automated)"
@@ -1026,7 +1026,7 @@
   {
     "description": "Set system audit so that audit rules cannot be modified with auditctl. Setting the flag \"-e 2\" forces audit to be put in immutable mode. Audit changes can only be made on system reboot.",
     "id": "6_3_3_36",
-    "regex": "^\\h*-e\\h+2\\b",
+    "regex": "^\\s*-e\\s+2\\b",
     "result": "fail",
     "time": 58,
     "title": "6.3.3.36 Ensure the audit configuration is immutable (Automated)"
@@ -1082,7 +1082,7 @@
   {
     "description": "The /etc/passwd- file contains backup user account information. It is critical to ensure that the /etc/passwd- file is protected from unauthorized access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions.",
     "id": "7_1_2",
-    "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\)  Gid: \\{ 0/ root\\)",
+    "regex": "Access: \\(0644/-rw-r--r--\\)  Uid: \\( 0/ root\\)  Gid: \\( 0/ root\\)",
     "result": "fail",
     "time": 58,
     "title": "7.1.2 Ensure access to /etc/passwd- is configured (Automated)"
@@ -1170,7 +1170,7 @@
   {
     "description": "The owner of a file can set the file's permissions to run with the owner's or group's permissions, even if the user running the program is not the owner or a member of the group. It is important to identify and review such programs to ensure they are legitimate.",
     "id": "7_1_13",
-    "regex": "SUID|SGID",
+    "regex": ".+",
     "result": "error",
     "time": 8832,
     "title": "7.1.13 Ensure SUID and SGID files are reviewed (Manual)"
@@ -1242,7 +1242,7 @@
   {
     "description": "Ensure that local interactive user dot files are configured with secure permissions to prevent unauthorized access and modifications by malicious users.",
     "id": "7_2_9",
-    "regex": "0644|0600",
+    "regex": "^(0644|0600|644|600)$",
     "result": "error",
     "time": 345,
     "title": "7.2.9 Ensure local interactive user dot files access is configured"

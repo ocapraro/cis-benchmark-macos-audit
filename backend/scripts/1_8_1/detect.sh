@@ -1,1 +1,1 @@
-gsettings get org.gnome.login-screen banner-message-enable | grep -q 'false' && gsettings get org.gnome.login-screen banner-message-text | grep -q 'Your legal notice here'
+gsettings get org.gnome.login-screen banner-message-enable 2>/dev/null || echo ""

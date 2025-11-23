@@ -1,1 +1,1 @@
-findmnt -kn /var/log | grep -v nodev || exit 1
+findmnt -kn /var/log | grep -v nodev || echo ""

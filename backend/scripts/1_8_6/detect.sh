@@ -1,1 +1,1 @@
-sed -n '/\[daemon\]/,/\\[/p' /etc/gdm/custom.conf | grep -Psi '^\h*waylandenable\b' | grep -q 'WaylandEnable=false' && exit 0 || exit 1
+sed -n '/\[daemon\]/,/\[/p' /etc/gdm/custom.conf 2>/dev/null | grep -Psi '^\h*waylandenable\b' || echo ""

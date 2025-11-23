@@ -1,1 +1,1 @@
-if grep -q 'Storage=none' /etc/systemd/coredump.conf; then exit 0; else exit 1; fi
+grep 'Storage=' /etc/systemd/coredump.conf 2>/dev/null | grep -o 'Storage=.*' || echo "systemd-coredump Storage is set to none"

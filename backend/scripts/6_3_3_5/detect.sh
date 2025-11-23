@@ -1,1 +1,1 @@
-auditctl -l | grep -Ps -- 'sethostname|setdomainname' && exit 0 || exit 1
+auditctl -l 2>/dev/null | grep -Ps -- 'sethostname|setdomainname' || echo ""

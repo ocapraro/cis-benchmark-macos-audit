@@ -1,1 +1,1 @@
-rpm -q tftp | grep -q 'not installed' && exit 0 || exit 1
+rpm -q tftp
