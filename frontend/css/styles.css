@@ -34,6 +34,53 @@ main {
   gap:25px;
 }
 
+#actions {
+  display: flex;
+  gap: 15px;
+  
+  .action-button {
+    padding: 15px 25px;
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    
+    svg {
+      height: 20px;
+      width: 20px;
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    &.primary {
+      background-color: rgb(45, 124, 194);
+    }
+    
+    &.secondary {
+      background-color: rgb(194, 45, 45);
+    }
+  }
+}
+
 .subtitle {
   color: #ccc;
 }
