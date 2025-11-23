@@ -1,1 +1,1 @@
-findmnt -kn /home | grep -q nodev || exit 1
+findmnt -kn /home | grep -q nodev || exit 0; exit 1;
