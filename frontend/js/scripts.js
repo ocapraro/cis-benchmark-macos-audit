@@ -1,42 +1,69 @@
 window.onload = ()=>{
   // Add event listeners for action buttons
-  document.getElementById('run-all-checks').addEventListener('click', () => {
-    const button = document.getElementById('run-all-checks');
-    button.disabled = true;
-    button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>Running...';
-    
-    fetch(`${API_BASE_URL}/run-all`, {
-      method: 'POST'
-    })
-    .then(res => res.json())
-    .then(() => {
-      window.location.reload();
-    })
-    .catch(error => {
-      console.error('Error running all checks:', error);
-      button.disabled = false;
-      button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>Run All Checks';
+  const runAllBtn = document.getElementById('run-all-checks');
+  const fixAllBtn = document.getElementById('run-all-fixes');
+  
+  if (runAllBtn) {
+    runAllBtn.addEventListener('click', () => {
+      console.log('Run All Checks clicked');
+      runAllBtn.disabled = true;
+      runAllBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Running...';
+      
+      fetch(`${API_BASE_URL}/run-all`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+        console.log('Response status:', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('Response data:', data);
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      })
+      .catch(error => {
+        console.error('Error running all checks:', error);
+        runAllBtn.disabled = false;
+        runAllBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>Run All Checks';
+        alert('Error: ' + error.message);
+      });
     });
-  });
+  }
 
-  document.getElementById('run-all-fixes').addEventListener('click', () => {
-    const button = document.getElementById('run-all-fixes');
-    button.disabled = true;
-    button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>Fixing...';
-    
-    fetch(`${API_BASE_URL}/fix-all`, {
-      method: 'POST'
-    })
-    .then(res => res.json())
-    .then(() => {
-      window.location.reload();
-    })
-    .catch(error => {
-      console.error('Error running all fixes:', error);
-      button.disabled = false;
-      button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Fix All Failed Tests';
+  if (fixAllBtn) {
+    fixAllBtn.addEventListener('click', () => {
+      console.log('Fix All Tests clicked');
+      fixAllBtn.disabled = true;
+      fixAllBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Fixing...';
+      
+      fetch(`${API_BASE_URL}/fix-all`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+        console.log('Response status:', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('Response data:', data);
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      })
+      .catch(error => {
+        console.error('Error running all fixes:', error);
+        fixAllBtn.disabled = false;
+        fixAllBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>Fix All Failed Tests';
+        alert('Error: ' + error.message);
+      });
     });
-  });
+  }
 
   fetch(API_BASE_URL)
     .then(response => response.json())
