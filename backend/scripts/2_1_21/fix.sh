@@ -1,5 +1,8 @@
-# Ensure MTA is configured for local-only mode
-# Edit the MTA configuration file (e.g., /etc/postfix/main.cf for Postfix)
-# Set 'inet_interfaces = loopback-only'
-# Restart the MTA service
-systemctl restart postfix
+#!/bin/bash
+# Configure Postfix for local-only mode
+if [ -f /etc/postfix/main.cf ]; then
+    sed -i 's/^inet_interfaces.*/inet_interfaces = loopback-only/' /etc/postfix/main.cf
+    systemctl restart postfix 2>/dev/null || true
+else
+    echo "Postfix not installed"
+fi

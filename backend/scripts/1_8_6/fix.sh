@@ -1,6 +1,10 @@
-# To disable Xwayland, edit the /etc/gdm/custom.conf file and set WaylandEnable=false.
-# 1. Open the file: sudo nano /etc/gdm/custom.conf
-# 2. Add or modify the line: WaylandEnable=false
-# 3. Save and exit the editor.
-# 4. Restart the GDM service or reboot the system for changes to take effect.
-exit 2
+#!/bin/bash
+# Disable Xwayland by configuring GDM
+if [ -f /etc/gdm/custom.conf ]; then
+    if ! grep -q '^WaylandEnable=false' /etc/gdm/custom.conf; then
+        sed -i '/^\[daemon\]/a WaylandEnable=false' /etc/gdm/custom.conf
+    fi
+    systemctl restart gdm 2>/dev/null || true
+else
+    echo "GDM not installed - /etc/gdm/custom.conf not found"
+fi
