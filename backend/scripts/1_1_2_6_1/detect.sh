@@ -1,2 +1,2 @@
 #!/bin/bash
-findmnt -kn /var/log 2>/dev/null || echo "" | grep '/var/log'
+findmnt -kn /var/log 2>/dev/null || echo ""
