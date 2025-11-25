@@ -60,7 +60,7 @@ const server = http.createServer(async (req, res) => {
     console.log('Running all fixes...');
     const data = await readData();
     const tests = JSON.parse(data);
-    const failedTests = tests.filter(t => t.result === 'fail');
+    const failedTests = tests.filter(t => t.result === 'fail' || t.result === 'error');
     
     let fixed = 0;
     for (const test of failedTests) {
