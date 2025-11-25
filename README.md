@@ -24,9 +24,15 @@ sudo dnf install -y git python npm
 1. Open `frontend/index.html` in your browser
 
 ### Remote
-1. Within the backend folder run `python -m http.server -d ../frontend/ 8000`
-2. Allow access through firewall 
+1. Allow access through firewall 
 ```sh
-sudo firewall-cmd --allow-port=8000/tcp --permanent
-sudo firewall-cmd --allow-port=3000/tcp --permanent
+sudo firewall-cmd --add-port=8000/tcp --permanent
+sudo firewall-cmd --add-port=3000/tcp --permanent
+sudo firewall-cmd --reload
 ```
+2. edit config to include your ip
+```sh
+sudo dnf install -y nano
+nano ../frontend/js/config.js
+```
+3. Within the backend folder run `python -m http.server -d ../frontend/ 8000`
