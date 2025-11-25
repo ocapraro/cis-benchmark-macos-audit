@@ -36,3 +36,6 @@ sudo dnf install -y nano
 nano ../frontend/js/config.js
 ```
 3. Within the backend folder run `python -m http.server -d ../frontend/ 8000`
+
+## Notes
+Some of the benchmarks require you to restart before the fix takes effect, so after running all fixes, reboot and then check all again.
