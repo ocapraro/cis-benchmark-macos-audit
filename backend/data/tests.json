@@ -1136,14 +1136,6 @@
     "title": "7.1.11 Ensure world writable files and directories are secured"
   },
   {
-    "description": "Administrators may delete users or groups from the system and neglect to remove all files and/or directories owned by those users or groups. This control ensures that no files or directories exist without an owner and a group, preventing unauthorized access by new users or groups who may inherit those IDs.",
-    "id": "7_1_12",
-    "regex": "^$",
-    "result": "fail",
-    "time": 100515,
-    "title": "7.1.12 Ensure no files or directories without an owner and a group exist (Automated)"
-  },
-  {
     "description": "The owner of a file can set the file's permissions to run with the owner's or group's permissions, even if the user running the program is not the owner or a member of the group. It is important to identify and review such programs to ensure they are legitimate.",
     "id": "7_1_13",
     "regex": ".+",
